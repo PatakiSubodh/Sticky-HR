@@ -1,29 +1,67 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-import UserManagement from "./pages/features/UserManagement";
-import ExpenseManagement from "./pages/features/ExpenseManagement";
-import AttendanceManagement from "./pages/features/AttendanceManagement";
-import AssetsManagement from "./pages/features/AssetsManagement";
-import LeaveManagement from "./pages/features/LeaveManagement";
-import DocumentManagement from "./pages/features/DocumentManagement";
-import PayrollManagement from "./pages/features/PayrollManagement";
-import VirtualHRService from "./pages/services/VirtualHRService";
-import HiringRecruitment from "./pages/services/HiringRecruitment";
-import BackgroundVerification from "./pages/services/BackgroundVerification";
-import Training from "./pages/services/Training";
-import AIPlatform from "./pages/AIPlatform";
-import Pricing from "./pages/Pricing";
-import OurStory from "./pages/OurStory";
-import ContactUs from "./pages/ContactUs";
+// App.jsx
+import { useState } from 'react'; // Add useState
+import { Routes, Route, useLocation } from 'react-router-dom';
+import Footer from "./components/Footer.jsx";
+import Navbar from "./components/Navbar.jsx";
+import MainContent from "./components/MainContent.jsx";
+import Pricing from "./pages/Pricing.jsx"; 
+import AiPlatform from './pages/AiPlatform.jsx';
+import Blog from "./pages/Blog.jsx";
+
+// Product pages import
+import UserManagement from './pages/features/UserManagement.jsx';
+import ExpenseManagement from './pages/features/ExpenseManagement.jsx';
+import AttendanceManagement from './pages/features/AttendanceManagement.jsx';
+import AssetsManagement from './pages/features/AssetsManagement.jsx';
+import LeaveManagement from './pages/features/LeaveManagement.jsx';
+import DocumentManagement from './pages/features/DocumentManagement.jsx';
+import PayrollManagement from './pages/features/PayrollManagement.jsx';
+
+// Service pages import
+import VirtualHRService from './pages/services/VirtualHRservices.jsx';
+import HireService from './pages/services/HiringRecruitmentservices.jsx';
+import BackgroundService from './pages/services/BackgroundVerifyservices.jsx';
+import TrainingService from './pages/services/Trainingservices.jsx';
+import OurStory from './pages/OurStory.jsx';
+import ContactUs from './pages/ContactUs.jsx';
+import Careers from "./pages/careers/Careers.jsx";
+import Customers from "./pages/Customers.jsx";
+import ScrollToTop from './components/ScrollToTop.jsx';
+import Implementation from './pages/Implementation.jsx';
+
+import Sidebar from "./components/Sidebar.jsx"; // Import your custom Sidebar
+import { SidebarProvider } from "@/components/ui/sidebar"; // Keep this for context
+
+import NotFound from "./pages/NotFound.jsx"; // Import the NotFound component
 
 function App() {
+  const location = useLocation(); // Get current URL
+  const isNewInterface = location.pathname === "/ats"; // Check if URL is /ats
+
+  if (isNewInterface) {
+    return (
+      <SidebarProvider>
+        <Routes>
+          <Route path="/ats/*" element={<Sidebar />} />
+
+          {/* Fallback for unrecognized routes in new interface */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </SidebarProvider>
+    );
+  }
+
+  // Otherwise, render the default layout with routes
   return (
-    <BrowserRouter>
+    <>
+      <ScrollToTop />
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        {/* Features */}
+        <Route path="/" element={<MainContent />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/ai-platform" element={<AiPlatform />} />
+
+        {/* Features dropdown routes */}
         <Route path="/features/user-management" element={<UserManagement />} />
         <Route path="/features/expense-management" element={<ExpenseManagement />} />
         <Route path="/features/attendance-management" element={<AttendanceManagement />} />
@@ -31,20 +69,25 @@ function App() {
         <Route path="/features/leave-management" element={<LeaveManagement />} />
         <Route path="/features/document-management" element={<DocumentManagement />} />
         <Route path="/features/payroll-management" element={<PayrollManagement />} />
-        {/* Services */}
+
+        {/* Services dropdown routes */}
         <Route path="/services/virtual-hr-service" element={<VirtualHRService />} />
-        <Route path="/services/hiring-and-recruitment-service" element={<HiringRecruitment />} />
-        <Route path="/services/background-verification-service" element={<BackgroundVerification />} />
-        <Route path="/services/training-service" element={<Training />} />
-        {/* Static Pages */}
-        <Route path="/ai-platform" element={<AIPlatform />} />
-        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/services/hiring-and-recruitment-service" element={<HireService />} />
+        <Route path="/services/background-verification-service" element={<BackgroundService />} />
+        <Route path="/services/training-service" element={<TrainingService />} />
+
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/implementation" element={<Implementation />} />
         <Route path="/our-story" element={<OurStory />} />
+        <Route path="/careers" element={<Careers />} />
+        <Route path="/customers" element={<Customers />} />
         <Route path="/contact-us" element={<ContactUs />} />
-        {/* Optional: Catch-all for 404 */}
-        <Route path="*" element={<div>404 - Page Not Found</div>} />
+
+        {/* Fallback for unrecognized routes in default interface */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
-    </BrowserRouter>
+      <Footer className="fixed w-screen bottom-0" />
+    </>
   );
 }
 
