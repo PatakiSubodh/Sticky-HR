@@ -94,7 +94,7 @@
 
                                 {/* Features */}
                                 <NavigationMenuItem>
-                                    <Link to="/features/user-mangement">
+                                    <Link to="/features/user-management">
                                         <NavigationMenuTrigger
                                             className={cn(
                                                 isFeaturesActive ? "bg-[#086165] text-white lg:px-3 lg:py-4 xl:px-4 xl:py-5 2xl:px-5 2xl:py-6 rounded-3xl" : "text-black",
@@ -121,7 +121,7 @@
 
                                 {/* Services */}
                                 <NavigationMenuItem>
-                                    <Link to="/services/virtaul-hr-service">
+                                    <Link to="/services/virtual-hr-service">
                                         <NavigationMenuTrigger
                                             className={cn(
                                                 isServicesActive ? "bg-[#086165] text-white lg:px-3 lg:py-4 xl:px-4 xl:py-5 2xl:px-5 2xl:py-6 rounded-3xl" : "text-black",
