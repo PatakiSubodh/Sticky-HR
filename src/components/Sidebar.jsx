@@ -1,5 +1,5 @@
 // components/Sidebar.jsx
-import { AppSidebar } from "@/components/app-sidebar"; // Adjust path if needed
+import { AppSidebar } from "@/components/app-sidebar";
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -12,28 +12,11 @@ import { SidebarFooter } from "@/components/ui/sidebar";
 import { NavUser } from "@/components/nav-user";
 import { Separator } from "@/components/ui/separator";
 import { SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
+import { Link, useLocation, Outlet } from "react-router-dom"; // Add Outlet here
 
-import Dashboard from "../pages/Ats/Dashboard";
-
-import { Link, useLocation, Routes, Route } from "react-router-dom"; // Add Routes and Route
 import admin from "../assets/images/Ats-img/admin.png";
 import msg from "../assets/images/Ats-img/msg.png";
 import bell from "../assets/images/Ats-img/bell.png";
-
-// Placeholder components for ATS Resume and Report
-const ATSResume = () => (
-    <div className="h-full bg-[#e1ebec] p-5">
-        <h1 className="text-left text-xl pb-5 font-semibold">Resume Scanner</h1>
-        <p>This is a placeholder for the ATS Resume Scanner page.</p>
-    </div>
-);
-
-const Report = () => (
-    <div className="h-full bg-[#e1ebec] p-5">
-        <h1 className="text-left text-xl pb-5 font-semibold">Report</h1>
-        <p>This is a placeholder for the Report page.</p>
-    </div>
-);
 
 const data = {
     user: {
@@ -53,7 +36,9 @@ export default function Sidebar() {
         return (
             <>
             <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="/ats">ATS</BreadcrumbLink>
+                <BreadcrumbLink asChild>
+                <Link to="/ats">ATS</Link>
+                </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator className="hidden md:block" />
             <BreadcrumbItem>
@@ -65,7 +50,9 @@ export default function Sidebar() {
         return (
             <>
             <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="/ats">ATS</BreadcrumbLink>
+                <BreadcrumbLink asChild>
+                <Link to="/ats">ATS</Link>
+                </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator className="hidden md:block" />
             <BreadcrumbItem>
@@ -77,7 +64,9 @@ export default function Sidebar() {
         return (
             <>
             <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="/ats">ATS</BreadcrumbLink>
+                <BreadcrumbLink asChild>
+                <Link to="/ats">ATS</Link>
+                </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator className="hidden md:block" />
             <BreadcrumbItem>
@@ -89,7 +78,9 @@ export default function Sidebar() {
         return (
         <>
             <BreadcrumbItem className="hidden md:block">
-            <BreadcrumbLink href="/ats">ATS</BreadcrumbLink>
+            <BreadcrumbLink asChild>
+                <Link to="/ats">ATS</Link>
+            </BreadcrumbLink>
             </BreadcrumbItem>
         </>
         );
@@ -130,12 +121,10 @@ export default function Sidebar() {
             </div>
             </header>
 
-            {/* Conditionally render content based on the route */}
-            <Routes>
-            <Route path="/ats/dashboard" element={<Dashboard />} />
-            <Route path="/ats/resume-scanner" element={<ATSResume />} />
-            <Route path="/ats/report" element={<Report />} />
-            </Routes>
+            {/* Render nested route content here */}
+            <main>
+            <Outlet />
+            </main>
         </SidebarInset>
         </>
     );

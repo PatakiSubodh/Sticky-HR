@@ -6,7 +6,7 @@ import plugImageRight from "../assets/images/not-found/plug-right.png"; // Repla
 export default function NotFound() {
     return (
         <div className=" flex flex-col items-center justify-center mx-auto bg-gray-100 w-[95vw] rounded-lg my-10">
-            <div className="text-center pt-10">
+            <div className="text-center pt-10 z-0">
                 {/* 404 Heading */}
                 <h1 className="text-9xl font-bold text-gray-800">404</h1>
                 {/* Subheading */}
@@ -21,7 +21,7 @@ export default function NotFound() {
                 </a>
             </div>
             {/* Images of characters with plugs */}
-            <div className="flex justify-center items-center -mt-52 space-x-8 overflow-hidden">
+            <div className="flex justify-center items-center -mt-52 space-x-8 overflow-hidden ">
                 {/* Left Character */}
                 <img
                     src={plugImageLeft}

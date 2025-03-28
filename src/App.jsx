@@ -1,10 +1,10 @@
 // App.jsx
-import { useState } from 'react'; // Add useState
+import { useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Footer from "./components/Footer.jsx";
 import Navbar from "./components/Navbar.jsx";
 import MainContent from "./components/MainContent.jsx";
-import Pricing from "./pages/Pricing.jsx"; 
+import Pricing from "./pages/Pricing.jsx";
 import AiPlatform from './pages/AiPlatform.jsx';
 import Blog from "./pages/Blog.jsx";
 
@@ -29,20 +29,29 @@ import Customers from "./pages/Customers.jsx";
 import ScrollToTop from './components/ScrollToTop.jsx';
 import Implementation from './pages/Implementation.jsx';
 
-import Sidebar from "./components/Sidebar.jsx"; // Import your custom Sidebar
-import { SidebarProvider } from "@/components/ui/sidebar"; // Keep this for context
+import Sidebar from "./components/Sidebar.jsx";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
-import NotFound from "./pages/NotFound.jsx"; // Import the NotFound component
+import NotFound from "./pages/NotFound.jsx";
+import Dashboard from "@/pages/Ats/Dashboard";
+import ResumeScanner from "@/pages/Ats/ResumeScanner";
+import Report from "@/pages/Ats/Report";
 
 function App() {
-  const location = useLocation(); // Get current URL
-  const isNewInterface = location.pathname === "/ats"; // Check if URL is /ats
+  const location = useLocation();
+  const isNewInterface = location.pathname.startsWith("/ats"); // Updated to catch all /ats/* paths
 
   if (isNewInterface) {
     return (
       <SidebarProvider>
         <Routes>
-          <Route path="/ats/*" element={<Sidebar />} />
+          {/* ATS Sidebar layout with nested routes */}
+          <Route path="/ats/*" element={<Sidebar />}>
+            <Route index element={<Dashboard />} /> {/* /ats */}
+            <Route path="dashboard" element={<Dashboard />} /> {/* /ats/dashboard */}
+            <Route path="resume-scanner" element={<ResumeScanner />} /> {/* /ats/resume-scanner */}
+            <Route path="report" element={<Report />} /> {/* /ats/report */}
+          </Route>
 
           {/* Fallback for unrecognized routes in new interface */}
           <Route path="*" element={<NotFound />} />
@@ -51,7 +60,7 @@ function App() {
     );
   }
 
-  // Otherwise, render the default layout with routes
+  // Otherwise, render the default layout with routes (unchanged)
   return (
     <>
       <ScrollToTop />
