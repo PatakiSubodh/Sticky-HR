@@ -44,7 +44,7 @@ const data = {
       icon: Frame,
     },
     {
-      name: "ATS Resume",
+      name: "ATS Resume Scanner",
       url: "/ats/resume-scanner", // Update to proper route
       icon: PieChart,
     },

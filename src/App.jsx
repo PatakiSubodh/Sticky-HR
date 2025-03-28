@@ -45,12 +45,13 @@ function App() {
     return (
       <SidebarProvider>
         <Routes>
-          {/* ATS Sidebar layout with nested routes */}
-          <Route path="/ats/*" element={<Sidebar />}>
-            <Route index element={<Dashboard />} /> {/* /ats */}
-            <Route path="dashboard" element={<Dashboard />} /> {/* /ats/dashboard */}
-            <Route path="resume-scanner" element={<ResumeScanner />} /> {/* /ats/resume-scanner */}
-            <Route path="report" element={<Report />} /> {/* /ats/report */}
+          {/* Sidebar acts as the layout component with nested routes */}
+          <Route path="/ats" element={<Sidebar />}>
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="resume-scanner" element={<ResumeScanner />} />
+            <Route path="report" element={<Report />} />
+            {/* Optional: Default route when just "/ats" is accessed */}
+            <Route index element={<ResumeScanner />} />
           </Route>
 
           {/* Fallback for unrecognized routes in new interface */}

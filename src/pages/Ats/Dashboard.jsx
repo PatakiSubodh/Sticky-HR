@@ -8,6 +8,7 @@ import Piechart from "../../components/ui/Piechart";
 
 import Barchart from '../../components/ui/Barchart.jsx';
 import CandidateTable from "./CandidateTable.jsx";
+import ResumeScanner from "@/pages/Ats/ResumeScanner"
 
 const yearlyData = [
     { day: "Jan", type1: 56 },
@@ -81,7 +82,6 @@ export default function Dashboard(){
                     </div>
                     <div className="grid grid-cols-3 grid-rows-2 gap-x-3 gap-y-3">
                         <div className="bg-[#fff] grid col-span-2 row-span-2 rounded-xl p-5">
-                            <h1 className="text-xl font-normal">Candidates</h1>
                             <CandidateTable />
                         </div>
                         <div className="bg-[#fff] grid rounded-xl p-5 ">
@@ -111,7 +111,9 @@ export default function Dashboard(){
                         </div>
                     </div>
                 </div>
+
             </div>
+            {/* <ResumeScanner /> */}
         </>
     );
 }

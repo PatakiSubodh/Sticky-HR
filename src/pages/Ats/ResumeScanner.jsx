@@ -1,7 +1,7 @@
-
-
 export default function ResumeScanner() {
-    <>
-    <h1>this is resume scanner</h1>
-    </>
+    return (
+        <>
+            <h1 className="mt-10 ml-20">This is Resume Scanner</h1>
+        </>
+    );
 }

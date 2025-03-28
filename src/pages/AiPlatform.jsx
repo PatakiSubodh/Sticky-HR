@@ -14,7 +14,7 @@ export default function AiPlatform({ onSwitchToNewInterface }){
     const navigate = useNavigate();
 
     const handleButtonClick = () => {
-        navigate("/ats"); 
+        navigate("/ats/resume-scanner"); 
     };
 
     return(

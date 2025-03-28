@@ -3,8 +3,9 @@ import logo from '../assets/images/cmpyLogo.png';
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Link, useLocation } from 'react-router-dom';
-import { Sling as Hamburger } from "hamburger-react"; // Your hamburger menu
-import { motion } from "framer-motion"; // Import motion from framer-motion
+import { Sling as Hamburger } from "hamburger-react";
+import { motion } from "framer-motion";
+import FadeInUp from './FadeInUp';
 
 // Features dropdown icons
 import img1 from '../assets/icons/features-dropdown-icons/img1.png';
@@ -21,9 +22,6 @@ import serImg2 from '../assets/icons/services-dropdown-icons/serImg2.png';
 import serImg3 from '../assets/icons/services-dropdown-icons/serImg3.png';
 import serImg4 from '../assets/icons/services-dropdown-icons/serImg4.png';
 
-// FadeInUp animation
-import FadeInUp from './FadeInUp';
-
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -33,104 +31,116 @@ import {
     NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 
-// Features data
+// Features data 
 const features = [
-    {
-        title: "User Management",
-        href: "/features/user-management",
-        bgHover: "hover:bg-[#F1F8FF]",
-        img: img1,
+    { 
+        title: "User Management", 
+        href: "/features/user-management", 
+        bgHover: "hover:bg-[#F1F8FF]", 
+        img: img1 
     },
-    {
-        title: "Expense Management",
-        href: "/features/expense-management",
-        bgHover: "hover:bg-[#F4FEFF]",
-        img: img2,
+    { 
+        title: "Expense Management", 
+        href: "/features/expense-management", 
+        bgHover: "hover:bg-[#F4FEFF]", 
+        img: img2 
     },
-    {
-        title: "Attendance Management",
-        href: "/features/attendance-management",
-        bgHover: "hover:bg-[#FFF3EF]",
-        img: img3,
+    { 
+        title: "Attendance Management", 
+        href: "/features/attendance-management", 
+        bgHover: "hover:bg-[#FFF3EF]", 
+        img: img3 
     },
-    {
-        title: "Assets Management",
-        href: "/features/assets-management",
-        bgHover: "hover:bg-[#EFFFF5]",
-        img: img4,
+    { 
+        title: "Assets Management", 
+        href: "/features/assets-management", 
+        bgHover: "hover:bg-[#EFFFF5]", 
+        img: img4 
     },
-    {
-        title: "Leave Management",
-        href: "/features/leave-management",
-        bgHover: "hover:bg-[#F7F4FF]",
-        img: img5,
+    { 
+        title: "Leave Management", 
+        href: "/features/leave-management", 
+        bgHover: "hover:bg-[#F7F4FF]", 
+        img: img5 
     },
-    {
-        title: "Document Management",
-        href: "/features/document-management",
-        bgHover: "hover:bg-[#EBF8FF]",
-        img: img6,
+    { 
+        title: "Document Management", 
+        href: "/features/document-management", 
+        bgHover: "hover:bg-[#EBF8FF]", 
+        img: img6 
     },
-    {
-        title: "Payroll Management",
-        href: "/features/payroll-management",
-        bgHover: "hover:bg-[#FFFCF2]",
-        img: img7,
+    { 
+        title: "Payroll Management", 
+        href: "/features/payroll-management", 
+        bgHover: "hover:bg-[#FFFCF2]", 
+        img: img7 
     },
 ];
 
-// Services data
+// Services data 
 const services = [
-    {
-        title: "Virtual HR Services",
-        href: "/services/virtual-hr-service",
-        bgHover: "hover:bg-[#F1F8FF]",
-        img: serImg1,
+    { 
+        title: "Virtual HR Services", 
+        href: "/services/virtual-hr-service", 
+        bgHover: "hover:bg-[#F1F8FF]", 
+        img: serImg1 
     },
-    {
-        title: "Hiring & Recruitment",
-        href: "/services/hiring-and-recruitment-service",
-        bgHover: "hover:bg-[#CCE7FF]",
-        img: serImg2,
+    { 
+        title: "Hiring & Recruitment", 
+        href: "/services/hiring-and-recruitment-service", 
+        bgHover: "hover:bg-[#CCE7FF]", 
+        img: serImg2 
     },
-    {
-        title: "Background Verification",
-        href: "/services/background-verification-service",
-        bgHover: "hover:bg-[#DEEEEF]",
-        img: serImg3,
+    { 
+        title: "Background Verification", 
+        href: "/services/background-verification-service", 
+        bgHover: "hover:bg-[#DEEEEF]", 
+        img: serImg3 
     },
-    {
-        title: "Training",
-        href: "/services/training-service",
-        bgHover: "hover:bg-[#F7F4FF]",
-        img: serImg4,
+    { 
+        title: "Training", 
+        href: "/services/training-service", 
+        bgHover: "hover:bg-[#F7F4FF]", 
+        img: serImg4 
+    },
+];
+
+// Static navigation Data
+const staticNavItems = [
+    { 
+        title: "AI Platform", 
+        href: "/ai-platform" 
+    },
+    { 
+        title: "Pricing", 
+        href: "/pricing" 
+    },
+    { 
+        title: "Our Story", 
+        href: "/our-story" 
     },
 ];
 
 function Navbar() {
-    const location = useLocation(); // Get current route
+    const location = useLocation();
     const isFeaturesActive = location.pathname.startsWith("/features/");
     const isServicesActive = location.pathname.startsWith("/services/");
-    const [isOpen, setOpen] = useState(false); // For Hamburger menu
-    // const [isFeaturesDropdownOpen, setIsFeaturesDropdownOpen] = useState(false); // For Features dropdown
-    // const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false); // For Services dropdown
+    const [isOpen, setOpen] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);
 
     return (
-        <div className="main-nav flex mx-4 md:mx-8 lg:mx-16 my-5 justify-between pt-5 align-middle">
+        <div className="main-nav flex mx-4 md:mx-8 lg:mx-16 my-5 justify-between align-middle">
             {/* LOGO and Hamburger */}
             <div className="flex justify-between items-center w-full lg:w-auto ml-4">
                 <FadeInUp delay={0.1}>
                     <Link to="/"><img src={logo} alt="company logo" className="2xl:w-52 xl:w-48 lg:w-40 md:w-44 sm:w-36 w-28" /></Link>
                 </FadeInUp>
-
-                {/* Hamburger Menu (Mobile & Tablet Only) */}
                 <div className="lg:hidden">
                     <Hamburger toggled={isOpen} toggle={setOpen} size={28} color="#086165" />
                 </div>
             </div>
 
-            {/* Desktop Navigation (Only for lg and up) */}
+            {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-4">
                 <FadeInUp delay={0.2}>
                     <NavigationMenu>
@@ -141,7 +151,7 @@ function Navbar() {
                                     <Link to="/">
                                         <Button
                                             variant="link"
-                                            className={`2xl:text-[1.1rem] xl:text-[1rem] lg:text-[0.8rem] font-medium hover:no-underline ${location.pathname === "/" ? "bg-[#086165] text-white lg:px-3 lg:py-4 xl:px-4 xl:py-5 2xl:px-5 2xl:py-6 rounded-3xl" : ""}`}
+                                            className={`2xl:text-[1.1rem] xl:text-[1rem] lg:text-[0.8rem] font-medium hover:no-underline ${location.pathname === "/" ? "bg-[#086165] text-white lg:px-4 lg:py- xl:px-4 xl:py-3 2xl:px-4 2xl:py-5 rounded-3xl" : ""}`}
                                         >
                                             Home
                                         </Button>
@@ -154,7 +164,7 @@ function Navbar() {
                                 <Link to="/features/user-management">
                                     <NavigationMenuTrigger
                                         className={cn(
-                                            isFeaturesActive ? "bg-[#086165] text-white lg:px-3 lg:py-4 xl:px-4 xl:py-5 2xl:px-5 2xl:py-6 rounded-3xl" : "text-black",
+                                            isFeaturesActive ? "bg-[#086165] text-white lg:px-4 lg:py- xl:px-4 xl:py-3 2xl:px-4 2xl:py-5 rounded-3xl" : "text-black",
                                             "hover:text-black aria-expanded:text-black 2xl:text-[1.1rem] xl:text-[1rem] lg:text-[0.8rem] font-medium"
                                         )}
                                     >
@@ -181,7 +191,7 @@ function Navbar() {
                                 <Link to="/services/virtual-hr-service">
                                     <NavigationMenuTrigger
                                         className={cn(
-                                            isServicesActive ? "bg-[#086165] text-white lg:px-3 lg:py-4 xl:px-4 xl:py-5 2xl:px-5 2xl:py-6 rounded-3xl" : "text-black",
+                                            isServicesActive ? "bg-[#086165] text-white lg:px-4 lg:py- xl:px-4 xl:py-3 2xl:px-4 2xl:py-5 rounded-3xl" : "text-black",
                                             "hover:text-black aria-expanded:text-black 2xl:text-[1.1rem] xl:text-[1rem] lg:text-[0.8rem] font-medium"
                                         )}
                                     >
@@ -204,17 +214,17 @@ function Navbar() {
                             </NavigationMenuItem>
 
                             {/* Static Pages */}
-                            {["/ai-platform", "/pricing", "/our-story"].map((path) => (
-                                <NavigationMenuItem key={path}>
+                            {staticNavItems.map((item) => (
+                                <NavigationMenuItem key={item.href}>
                                     <NavigationMenuLink asChild>
-                                        <Link to={path}>
+                                        <Link to={item.href}>
                                             <Button
                                                 variant="link"
                                                 className={`2xl:text-[1.1rem] xl:text-[1rem] lg:text-[0.8rem] font-medium hover:no-underline ${
-                                                    location.pathname === path ? "bg-[#086165] text-white lg:px-3 lg:py-4 xl:px-4 xl:py-5 2xl:px-5 2xl:py-6 rounded-3xl" : ""
+                                                    location.pathname === item.href ? "bg-[#086165] text-white lg:px-4 lg:py- xl:px-4 xl:py-3 2xl:px-4 2xl:py-5 rounded-3xl" : ""
                                                 }`}
                                             >
-                                                {path.replace("/", "").replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase())}
+                                                {item.title}
                                             </Button>
                                         </Link>
                                     </NavigationMenuLink>
@@ -226,29 +236,27 @@ function Navbar() {
             </div>
 
             <div className="hidden lg:flex items-center space-x-4">
-            {/* Contact Us button */}
-            <FadeInUp delay={0.3}>
+                <FadeInUp delay={0.3}>
                     <Link to="/contact-us">
-                        <Button className="bg-yellow-400 text-black rounded-3xl font-semibold 2xl:text-[1.1rem] xl:text-[1rem] lg:text-[0.8rem] hover:text-white lg:px-3 lg:py-4 xl:px-4 xl:py-5 2xl:px-5 2xl:py-6 active:scale-95 transition">
+                        <Button className="bg-yellow-400 text-black rounded-3xl font-semibold 2xl:text-[1.1rem] xl:text-[1rem] lg:text-[0.8rem] hover:text-white lg:px-4 lg:py- xl:px-4 xl:py-3 2xl:px-4 2xl:py-5 active:scale-95 transition">
                             Contact Us
                         </Button>
                     </Link>
-            </FadeInUp>
+                </FadeInUp>
             </div>
 
-            {/* Mobile Sidebar (Right Side) */}
+            {/* Mobile Sidebar */}
             <div
                 className={`fixed inset-y-0 right-0 w-[80%] bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out ${
                     isOpen ? "translate-x-0" : "translate-x-full"
                 }`}
             >
-                {/* Close Button */}
                 <div className="pt-[5rem] p-4">
                     <motion.button
                         onClick={() => setOpen(false)}
                         className="absolute top-8 right-8 text-black focus:outline-none"
-                        animate={{ rotate: isOpen ? 180 : 0 }} // Rotate when isOpen state changes
-                        transition={{ duration: 0.3, ease: "easeInOut" }} // Smooth transition
+                        animate={{ rotate: isOpen ? 180 : 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
                         <svg
                             className="w-8 h-8"
@@ -266,8 +274,7 @@ function Navbar() {
                         </svg>
                     </motion.button>
 
-                    {/* Sidebar Content */}
-                    <div className="mt-[5%] space-y-4 overflow-y-auto max-h-[calc(100vh-10rem)]"> {/* Add max-height and overflow-y-auto */}
+                    <div className="mt-[5%] space-y-4 overflow-y-auto max-h-[calc(100vh-10rem)]">
                         {/* Home */}
                         <Link
                             to="/"
@@ -275,17 +282,17 @@ function Navbar() {
                                 location.pathname === "/" ? "bg-[#086165] text-white" : "text-black hover:bg-gray-100"
                             }`}
                             onClick={() => {
-                                setOpen(false); // Close sidebar
-                                setActiveDropdown(null); // Close all dropdowns
+                                setOpen(false);
+                                setActiveDropdown(null);
                             }}
                         >
                             Home
                         </Link>
 
-                        {/* Features Dropdown */}
+                        {/* Features */}
                         <div>
                             <button
-                                onClick={() => setActiveDropdown(activeDropdown === "features" ? null : "features")} // Toggle features dropdown
+                                onClick={() => setActiveDropdown(activeDropdown === "features" ? null : "features")}
                                 className={`flex items-center justify-between w-full text-base font-medium px-4 py-2 rounded-lg ${
                                     location.pathname.startsWith("/features")
                                         ? "bg-[#086165] text-white"
@@ -310,7 +317,7 @@ function Navbar() {
                                     ></path>
                                 </svg>
                             </button>
-                            {activeDropdown === "features" && ( // Only show if features dropdown is active
+                            {activeDropdown === "features" && (
                                 <ul className="pl-4 mt-2 space-y-2">
                                     {features.map((feature) => (
                                         <li key={feature.title}>
@@ -321,10 +328,7 @@ function Navbar() {
                                                         ? "bg-[#FFC600] text-black"
                                                         : "text-black hover:bg-gray-100"
                                                 }`}
-                                                onClick={() => {
-                                                    setOpen(false); // Close sidebar
-                                                    // Do not close the dropdown when clicking its own links
-                                                }}
+                                                onClick={() => setOpen(false)}
                                             >
                                                 {feature.title}
                                             </Link>
@@ -334,10 +338,10 @@ function Navbar() {
                             )}
                         </div>
 
-                        {/* Services Dropdown */}
+                        {/* Services */}
                         <div>
                             <button
-                                onClick={() => setActiveDropdown(activeDropdown === "services" ? null : "services")} // Toggle services dropdown
+                                onClick={() => setActiveDropdown(activeDropdown === "services" ? null : "services")}
                                 className={`flex items-center justify-between w-full text-base font-medium px-4 py-2 rounded-lg ${
                                     location.pathname.startsWith("/services")
                                         ? "bg-[#086165] text-white"
@@ -362,7 +366,7 @@ function Navbar() {
                                     ></path>
                                 </svg>
                             </button>
-                            {activeDropdown === "services" && ( // Only show if services dropdown is active
+                            {activeDropdown === "services" && (
                                 <ul className="pl-4 mt-2 space-y-2">
                                     {services.map((service) => (
                                         <li key={service.title}>
@@ -373,10 +377,7 @@ function Navbar() {
                                                         ? "bg-[#FFC600] text-black"
                                                         : "text-black hover:bg-gray-100"
                                                 }`}
-                                                onClick={() => {
-                                                    setOpen(false); // Close sidebar
-                                                    // Do not close the dropdown when clicking its own links
-                                                }}
+                                                onClick={() => setOpen(false)}
                                             >
                                                 {service.title}
                                             </Link>
@@ -387,26 +388,37 @@ function Navbar() {
                         </div>
 
                         {/* Static Pages */}
-                        {["/ai-platform", "/pricing", "/our-story", "/contact-us"].map((path) => (
+                        {staticNavItems.map((item) => (
                             <Link
-                                key={path}
-                                to={path}
+                                key={item.href}
+                                to={item.href}
                                 className={`block text-base font-medium px-4 py-2 rounded-lg ${
-                                    location.pathname === path ? "bg-[#086165] text-white" : "text-black hover:bg-gray-100"
+                                    location.pathname === item.href ? "bg-[#086165] text-white" : "text-black hover:bg-gray-100"
                                 }`}
                                 onClick={() => {
-                                    setOpen(false); // Close sidebar
-                                    setActiveDropdown(null); // Close all dropdowns
+                                    setOpen(false);
+                                    setActiveDropdown(null);
                                 }}
                             >
-                                {path.replace("/", "").replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase())}
+                                {item.title}
                             </Link>
                         ))}
+                        {/* Contact Us in Mobile */}
+                        <Link
+                            to="/contact-us"
+                            className={`block text-base font-medium px-4 py-2 rounded-lg ${
+                                location.pathname === "/contact-us" ? "bg-[#086165] text-white" : "text-black hover:bg-gray-100"
+                            }`}
+                            onClick={() => {
+                                setOpen(false);
+                                setActiveDropdown(null);
+                            }}
+                        >
+                            Contact Us
+                        </Link>
                     </div>
                 </div>
             </div>
-
-
         </div>
     );
 }

@@ -1,7 +1,7 @@
-
-
 export default function Report() {
-    <>
-    <h1>this is report</h1>
-    </>
+    return (
+        <>
+            <h1 className="mt-10 ml-20">This is Report</h1>
+        </>
+    );
 }
