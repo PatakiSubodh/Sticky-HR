@@ -1,12 +1,11 @@
 import { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import '../ui/PricingForm.css'
-
-import FadeInUp from '@/components/FadeInUp'
+import '../ui/PricingForm.css';
+import FadeInUp from '@/components/FadeInUp';
 
 export default function PricingForm() {
-    const [formData, setFormData] = useState({
+    const initialFormData = {
         email: "",
         firstName: "",
         lastName: "",
@@ -17,9 +16,10 @@ export default function PricingForm() {
         functionalArea: "",
         source: "",
         selectedFeatures: [],
-    });
+    };
 
-    const [error, setError] = useState("");
+    const [formData, setFormData] = useState(initialFormData);
+    const [errors, setErrors] = useState({});
 
     const features = [
         "Virtual HR Management",
@@ -76,6 +76,18 @@ export default function PricingForm() {
         "Others",
     ];
 
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        if ((name === 'firstName' || name === 'lastName' || name === 'companyName') && /[^a-zA-Z\s]/.test(value)) {
+            setErrors(prev => ({ ...prev, [name]: 'Only letters are allowed' }));
+            return;
+        }
+
+        setFormData(prev => ({ ...prev, [name]: value }));
+        setErrors(prev => ({ ...prev, [name]: '' }));
+    };
+
     const handleCheckboxChange = (feature) => {
         setFormData((prev) => ({
             ...prev,
@@ -86,47 +98,71 @@ export default function PricingForm() {
     };
 
     const handlePhoneChange = (value) => {
-        setFormData((prev) => ({
-            ...prev,
-            contactNumber: value,
-        }));
+        if (/[^0-9+]/.test(value)) {
+            setErrors(prev => ({ ...prev, contactNumber: 'Only numbers are allowed' }));
+            return;
+        }
+        setFormData((prev) => ({ ...prev, contactNumber: value }));
+        setErrors(prev => ({ ...prev, contactNumber: '' }));
     };
 
-    const handleSubmit = () => {
-        const missingFields = [];
-    
-        if (!formData.email) missingFields.push("Work Email");
-        if (!formData.firstName) missingFields.push("First Name");
-        if (!formData.lastName) missingFields.push("Last Name");
-        if (!formData.companyName) missingFields.push("Company Name");
-        if (!formData.employees) missingFields.push("Number of Employees");
-        if (!formData.seniority) missingFields.push("Seniority");
-        if (!formData.functionalArea) missingFields.push("Functional Area");
-    
-        if (missingFields.length > 0) {
-            setError(`Please fill in the following fields:\n• ${missingFields.join("\n• ")}`);
-        } else {
-            setError(""); // No errors, proceed with submission
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const newErrors = {};
+
+        if (!formData.email) newErrors.email = 'Email is required';
+        else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Invalid email format';
+
+        if (!formData.firstName) newErrors.firstName = 'First Name is required';
+        else if (/[^a-zA-Z\s]/.test(formData.firstName)) newErrors.firstName = 'Only letters are allowed';
+
+        if (!formData.lastName) newErrors.lastName = 'Last Name is required';
+        else if (/[^a-zA-Z\s]/.test(formData.lastName)) newErrors.lastName = 'Only letters are allowed';
+
+        if (!formData.contactNumber) newErrors.contactNumber = 'Contact Number is required';
+        else if (/[^0-9+]/.test(formData.contactNumber)) newErrors.contactNumber = 'Only numbers are allowed';
+
+        if (!formData.companyName) newErrors.companyName = 'Company Name is required';
+        else if (/[^a-zA-Z\s]/.test(formData.companyName)) newErrors.companyName = 'Only letters are allowed';
+
+        if (!formData.employees) newErrors.employees = 'Number of Employees is required';
+        if (!formData.seniority) newErrors.seniority = 'Designation is required';
+        if (!formData.functionalArea) newErrors.functionalArea = 'Industry is required';
+        if (!formData.source) newErrors.source = 'This field is required';
+
+        setErrors(newErrors);
+
+        if (Object.keys(newErrors).length === 0) {
             console.log("Form Submitted:", formData);
+            // Add your form submission logic here (e.g., API call)
+            
+            // Reset form after successful submission
+            setFormData(initialFormData);
+            setErrors({});
         }
     };
-    
+
+    const isFormValid = 
+        formData.email &&
+        formData.firstName &&
+        formData.lastName &&
+        formData.contactNumber &&
+        formData.companyName &&
+        formData.employees &&
+        formData.seniority &&
+        formData.functionalArea &&
+        formData.source;
 
     return (
         <div className="bg-[#E1EEF0] min-h-screen flex flex-col items-center justify-center py-16 px-6">
-            {/* Heading */}
             <FadeInUp delay={0.1}>
-            <h1 className="text-[1rem] font-bold text-center sm:text-[1.3rem] md:text-[1.6rem] lg:text-[1.9rem] xl:text-[2.2rem] 2xl:text-[2.5rem] md:px-[5rem] text-gray-900 lg:mb-10 ">
-            Choose what your business needs and get
-                a customized set of product features.
-            </h1>
+                <h1 className="text-[1rem] font-bold text-center sm:text-[1.3rem] md:text-[1.6rem] lg:text-[1.9rem] xl:text-[2.2rem] 2xl:text-[2.5rem] md:px-[5rem] text-gray-900 lg:mb-10">
+                    Choose what your business needs and get a customized set of product features.
+                </h1>
             </FadeInUp>
 
-            {/* Layout Container */}
             <div className="max-w-6xl w-full flex flex-wrap lg:flex-nowrap justify-center items-start gap-5">
-
-                {/* Left: Features List */}
-                <div className="w-full lg:w-1/2 grid grid-cols-1 my-16 sm:ml-10 sm:grid-cols-2 lg:grid-cols-1 lg:gap-6 xl:mt-5 lg:mt-[15%] items-center xl:p-20 gap-4"> 
+                <div className="w-full lg:w-1/2 grid grid-cols-1 my-16 sm:ml-10 sm:grid-cols-2 lg:grid-cols-1 lg:gap-6 xl:mt-5 lg:mt-[15%] items-center xl:p-20 gap-4">
                     {features.map((feature, index) => (
                         <FadeInUp key={index} delay={index * 0.1}>
                             <label className="flex items-center gap-3 xl:mb-3 cursor-pointer">
@@ -134,7 +170,7 @@ export default function PricingForm() {
                                     type="checkbox"
                                     checked={formData.selectedFeatures.includes(feature)}
                                     onChange={() => handleCheckboxChange(feature)}
-                                    className="w-6 h-6 accent-[#027D74] rounded-md" // ✅ Removed `mt-1`
+                                    className="w-6 h-6 accent-[#027D74] rounded-md"
                                 />
                                 <span className="text-lg text-gray-700 leading-tight">{feature}</span>
                             </label>
@@ -142,46 +178,52 @@ export default function PricingForm() {
                     ))}
                 </div>
 
-
-                {/* Right: Form */}
                 <div className="w-full lg:w-1/2 xl:ml-20">
                     <FadeInUp delay={0.2}>
-                    <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg">
-                        <div className="space-y-4">
-                            {/* Work Email */}
-                            <div>
-                                <label className="text-sm font-semibold">Work Email*</label>
-                                <input
-                                    type="email"
-                                    placeholder="Enter the work email"
-                                    className="w-full p-3 border rounded-md mt-1"
-                                />
-                            </div>
-
-                            {/* First & Last Name */}
-                            <div className="flex gap-4">
-                                <div className="w-1/2">
-                                    <label className="text-sm font-semibold">First Name*</label>
+                        <form onSubmit={handleSubmit} className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg">
+                            <div className="space-y-4">
+                                <div>
+                                    <label className="text-sm font-semibold">Work Email*</label>
                                     <input
-                                        type="text"
-                                        placeholder="Enter the first name"
+                                        type="email"
+                                        name="email"
+                                        placeholder="Enter the work email"
+                                        value={formData.email}
+                                        onChange={handleChange}
                                         className="w-full p-3 border rounded-md mt-1"
                                     />
+                                    {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                                 </div>
-                                <div className="w-1/2">
-                                    <label className="text-sm font-semibold">Last Name*</label>
-                                    <input
-                                        type="text"
-                                        placeholder="Enter the last name"
-                                        className="w-full p-3 border rounded-md mt-1"
-                                    />
-                                </div>
-                            </div>
 
-                            {/* Contact Number */}
-                            <div className="w-full">
-                                <label className="text-sm font-semibold">Contact Number</label>
-                                <div className="w-full">
+                                <div className="flex gap-4">
+                                    <div className="w-1/2">
+                                        <label className="text-sm font-semibold">First Name*</label>
+                                        <input
+                                            type="text"
+                                            name="firstName"
+                                            placeholder="Enter the first name"
+                                            value={formData.firstName}
+                                            onChange={handleChange}
+                                            className="w-full p-3 border rounded-md mt-1"
+                                        />
+                                        {errors.firstName && <p className="text-red-500 text-xs mt-1">{errors.firstName}</p>}
+                                    </div>
+                                    <div className="w-1/2">
+                                        <label className="text-sm font-semibold">Last Name*</label>
+                                        <input
+                                            type="text"
+                                            name="lastName"
+                                            placeholder="Enter the last name"
+                                            value={formData.lastName}
+                                            onChange={handleChange}
+                                            className="w-full p-3 border rounded-md mt-1"
+                                        />
+                                        {errors.lastName && <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>}
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label className="text-sm font-semibold">Contact Number</label>
                                     <PhoneInput
                                         country={"in"}
                                         value={formData.contactNumber}
@@ -193,92 +235,109 @@ export default function PricingForm() {
                                         enableSearch
                                         placeholder="+91"
                                     />
+                                    {errors.contactNumber && <p className="text-red-500 text-xs mt-1">{errors.contactNumber}</p>}
                                 </div>
-                            </div>
 
-                            {/* Company Name */}
-                            <div>
-                                <label className="text-sm font-semibold">Company Name*</label>
-                                <input
-                                    type="text"
-                                    placeholder="Enter the Company name"
-                                    className="w-full p-3 border rounded-md mt-1"
-                                />
-                            </div>
+                                <div>
+                                    <label className="text-sm font-semibold">Company Name*</label>
+                                    <input
+                                        type="text"
+                                        name="companyName"
+                                        placeholder="Enter the Company name"
+                                        value={formData.companyName}
+                                        onChange={handleChange}
+                                        className="w-full p-3 border rounded-md mt-1"
+                                    />
+                                    {errors.companyName && <p className="text-red-500 text-xs mt-1">{errors.companyName}</p>}
+                                </div>
 
-                            {/* Number of Employees */}
-                            <div>
-                                <label className="text-sm font-semibold">Number Of Employees*</label>
-                                <select className="w-full p-3 border rounded-md mt-1">
-                                    <option>Select the number of employees</option>
-                                    {employeeOptions.map((option, index) => (
-                                        <option key={index} value={option}>
-                                            {option}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-
-                            {/* Select Fields */}
-                            <div className="flex gap-4">
-                                <div className="w-1/2">
-                                    <label className="text-sm font-semibold">Designation*</label>
-                                    <select className="w-full p-3 border rounded-md mt-1">
-                                        <option className="hover:bg-[#027D74] hover:text-white">Select the option</option>
-                                        {seniorityOptions.map((option, index) => (
+                                <div>
+                                    <label className="text-sm font-semibold">Number Of Employees*</label>
+                                    <select
+                                        name="employees"
+                                        value={formData.employees}
+                                        onChange={handleChange}
+                                        className="w-full p-3 border rounded-md mt-1"
+                                    >
+                                        <option value="">Select the number of employees</option>
+                                        {employeeOptions.map((option, index) => (
                                             <option key={index} value={option}>
                                                 {option}
                                             </option>
                                         ))}
                                     </select>
+                                    {errors.employees && <p className="text-red-500 text-xs mt-1">{errors.employees}</p>}
                                 </div>
-                                <div className="w-1/2">
-                                    <label className="text-sm font-semibold">Industry*</label>
-                                    <select className="w-full p-3 border rounded-md mt-1">
-                                        <option>Select the option</option>
-                                        {functionalOptions.map((option, index) => (
+
+                                <div className="flex gap-4">
+                                    <div className="w-1/2">
+                                        <label className="text-sm font-semibold">Designation*</label>
+                                        <select
+                                            name="seniority"
+                                            value={formData.seniority}
+                                            onChange={handleChange}
+                                            className="w-full p-3 border rounded-md mt-1"
+                                        >
+                                            <option value="">Select the option</option>
+                                            {seniorityOptions.map((option, index) => (
+                                                <option key={index} value={option}>
+                                                    {option}
+                                                </option>
+                                            ))}
+                                        </select>
+                                        {errors.seniority && <p className="text-red-500 text-xs mt-1">{errors.seniority}</p>}
+                                    </div>
+                                    <div className="w-1/2">
+                                        <label className="text-sm font-semibold">Industry*</label>
+                                        <select
+                                            name="functionalArea"
+                                            value={formData.functionalArea}
+                                            onChange={handleChange}
+                                            className="w-full p-3 border rounded-md mt-1"
+                                        >
+                                            <option value="">Select the option</option>
+                                            {functionalOptions.map((option, index) => (
+                                                <option key={index} value={option}>
+                                                    {option}
+                                                </option>
+                                            ))}
+                                        </select>
+                                        {errors.functionalArea && <p className="text-red-500 text-xs mt-1">{errors.functionalArea}</p>}
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label className="text-sm font-semibold">How did you know about us</label>
+                                    <select
+                                        name="source"
+                                        value={formData.source}
+                                        onChange={handleChange}
+                                        className="w-full p-3 border rounded-md mt-1"
+                                    >
+                                        <option value="">Select the options</option>
+                                        {knowUsOptions.map((option, index) => (
                                             <option key={index} value={option}>
                                                 {option}
                                             </option>
                                         ))}
                                     </select>
+                                    {errors.source && <p className="text-red-500 text-xs mt-1">{errors.source}</p>}
                                 </div>
-                            </div>
 
-                            {/* How did you hear about us */}
-                            <div>
-                                <label className="text-sm font-semibold">How did you know about us</label>
-                                <select className="w-full p-3 border rounded-md mt-1">
-                                    <option>Select the options</option>
-                                    {knowUsOptions.map((option, index) => (
-                                        <option key={index} value={option}>
-                                            {option}
-                                        </option>
-                                    ))}
-                                </select>
+                                <button
+                                    type="submit"
+                                    disabled={!isFormValid}
+                                    className={`w-full mt-4 p-3 text-white font-semibold bg-[#027D74] rounded-md transition active:scale-95 ${
+                                        !isFormValid ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#02665F]'
+                                    }`}
+                                >
+                                    REQUEST FOR DEMO
+                                </button>
                             </div>
-
-                            {/* Submit Button */}
-                            <button onClick={handleSubmit} className="w-full mt-4 p-3 text-white font-semibold bg-[#027D74] rounded-md hover:bg-[#02665F] active:scale-95 transition">
-                                REQUEST FOR DEMO
-                            </button>
-                        </div>
-                    </div>
+                        </form>
                     </FadeInUp>
-                    </div>
-
-            </div>
-
-            {/* 📌 Error Message Popup */}
-            {error && (
-                <div className="popup-overlay">
-                    <div className="popup">
-                        <p className="error-message" style={{ whiteSpace: "pre-line" }}>{error}</p>
-                        <button onClick={() => setError("")} className="active:scale-95 transition">Close</button>
-                    </div>
                 </div>
-            )}
-
+            </div>
         </div>
     );
 }

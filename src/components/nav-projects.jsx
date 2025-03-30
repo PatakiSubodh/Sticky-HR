@@ -32,14 +32,16 @@ export function NavProjects({ projects }) {
             <SidebarMenuItem key={item.name}>
               <SidebarMenuButton asChild tooltip={item.name}>
                 <Link
-                  to={item.url}
-                  className={`rounded-md !bg-transparent hover:!bg-[#086165] hover:!text-[#FFC600] ${
-                    isActive ? "!bg-[#086165] !text-[#FFC600]" : ""
-                  }`}
-                >
-                  <item.icon />
-                  <span>{item.name}</span>
-                </Link>
+                    to={item.url}
+                    className={`rounded-md transition-colors ${
+                      isActive 
+                        ? "bg-[#086165] text-[#FFC600]" 
+                        : "bg-transparent text-inherit"
+                    } hover:bg-transparent hover:border hover:border-[#086165]`}
+                  >
+                    <item.icon />
+                    <span>{item.name}</span>
+                  </Link>
               </SidebarMenuButton>
 
               {/* Uncomment this if you want the dropdown menu back */}

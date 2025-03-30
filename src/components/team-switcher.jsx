@@ -32,7 +32,7 @@ export function TeamSwitcher({ teams }) {
     if (team.name === "StickyHR Home Page") {
       navigate("/");
     } else if (team.name === "StickyHR ATS") {
-      navigate("/ats");
+      navigate("/ats/resume-scanner");
     }
   };
 
@@ -43,7 +43,7 @@ export function TeamSwitcher({ teams }) {
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+              className="data-[state=open]:bg-sidebar-accent hover:bg-transparent data-[state=open]:text-sidebar-accent-foreground"
             >
               <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-[#086165] text-white">
                 {activeTeam.isImage ? (
@@ -93,7 +93,7 @@ export function TeamSwitcher({ teams }) {
                 {/* <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut> */}
               </DropdownMenuItem>
             ))}
-            <DropdownMenuSeparator />
+            {/* <DropdownMenuSeparator /> */}
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>
