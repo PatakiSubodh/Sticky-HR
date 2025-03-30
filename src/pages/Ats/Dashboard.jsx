@@ -8,7 +8,6 @@ import Piechart from "../../components/ui/Piechart";
 
 import Barchart from '../../components/ui/Barchart.jsx';
 import CandidateTable from "./CandidateTable.jsx";
-import ResumeScanner from "@/pages/Ats/ResumeScanner"
 
 const yearlyData = [
     { day: "Jan", type1: 56 },
@@ -27,10 +26,9 @@ const yearlyData = [
 export default function Dashboard(){
     return(
         <>
-            <div className="h-full bg-[#e1ebec] p-5">
-                {/* <h1 className="text-left text-xl pb-5 font-semibold">Dashboard</h1> */}
+                <h1 className="text-left text-xl pb-5 font-semibold">Dashboard</h1>
                 <div className="grid gap-3">
-                    <div className="grid grid-rows-1 grid-cols-4 gap-x-3">
+                    <div className="grid 2xl:grid-rows-1 2xl:grid-cols-4 md:grid-rows-2 sm:grid-cols-2 gap-3">
                         <div className="flex flex-col bg-[#ffffff] rounded-xl p-5 ">
                             <div className="flex">
                                 <img src={c1} alt="Card1-Img" className="w-[20%]"/>
@@ -80,8 +78,8 @@ export default function Dashboard(){
                             </p>
                         </div>
                     </div>
-                    <div className="grid grid-cols-3 grid-rows-2 gap-x-3 gap-y-3">
-                        <div className="bg-[#fff] grid col-span-2 row-span-2 rounded-xl p-5">
+                    <div className="grid 2xl:grid-cols-3 2xl:grid-rows-2 lg:grid-cols-2 gap-x-3 gap-y-3">
+                        <div className="bg-[#fff] grid lg:col-span-2 2xl:row-span-2 rounded-xl p-5">
                             <CandidateTable />
                         </div>
                         <div className="bg-[#fff] grid rounded-xl p-5 ">
@@ -111,9 +109,6 @@ export default function Dashboard(){
                         </div>
                     </div>
                 </div>
-
-            </div>
-            {/* <ResumeScanner /> */}
         </>
     );
 }

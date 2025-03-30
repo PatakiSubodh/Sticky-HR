@@ -103,7 +103,7 @@ const CandidateTable = () => {
         <div className="w-full h-full flex flex-col">
             <h1 className="text-xl font-normal">Candidates</h1>
             {/* Header with Search and Filters */}
-            <div className="flex justify-end items-center mb-4 sticky top-0 z-10 bg-white">
+            <div className="flex justify-end items-center mb-4 top-0 z-10 bg-white">
                 <div className="flex items-center space-x-2">
                     <div className="relative">
                         <input

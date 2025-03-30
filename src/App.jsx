@@ -28,48 +28,33 @@ import Careers from "./pages/careers/Careers.jsx";
 import Customers from "./pages/Customers.jsx";
 import ScrollToTop from './components/ScrollToTop.jsx';
 import Implementation from './pages/Implementation.jsx';
-
-import Sidebar from "./components/Sidebar.jsx";
-import { SidebarProvider } from "@/components/ui/sidebar";
-
 import NotFound from "./pages/NotFound.jsx";
+
+// ATS Components
+import AtsLayout from './pages/Ats/AtsLayout.jsx';
 import Dashboard from "@/pages/Ats/Dashboard";
 import ResumeScanner from "@/pages/Ats/ResumeScanner";
 import Report from "@/pages/Ats/Report";
 
 function App() {
   const location = useLocation();
-  const isNewInterface = location.pathname.startsWith("/ats"); // Updated to catch all /ats/* paths
+  const isAtsRoute = location.pathname.startsWith('/ats');
 
-  if (isNewInterface) {
-    return (
-      <SidebarProvider>
-        <Routes>
-          {/* Sidebar acts as the layout component with nested routes */}
-          <Route path="/ats" element={<Sidebar />}>
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="resume-scanner" element={<ResumeScanner />} />
-            <Route path="report" element={<Report />} />
-            {/* Optional: Default route when just "/ats" is accessed */}
-            <Route index element={<ResumeScanner />} />
-          </Route>
-
-          {/* Fallback for unrecognized routes in new interface */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </SidebarProvider>
-    );
-  }
-
-  // Otherwise, render the default layout with routes (unchanged)
   return (
     <>
       <ScrollToTop />
-      <Navbar />
+      {!isAtsRoute && <Navbar />}
       <Routes>
         <Route path="/" element={<MainContent />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/ai-platform" element={<AiPlatform />} />
+
+        <Route path="/ats" element={<AtsLayout />}>
+          <Route index element={<Dashboard />} /> {/* Default for "/ats" */}
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="resume-scanner" element={<ResumeScanner />} />
+          <Route path="report" element={<Report />} />
+        </Route>
 
         {/* Features dropdown routes */}
         <Route path="/features/user-management" element={<UserManagement />} />
@@ -96,7 +81,7 @@ function App() {
         {/* Fallback for unrecognized routes in default interface */}
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <Footer className="fixed w-screen bottom-0" />
+      {!isAtsRoute && <Footer className="fixed w-screen bottom-0" />}
     </>
   );
 }
