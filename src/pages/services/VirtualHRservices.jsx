@@ -103,12 +103,12 @@ export default function VirtualHRservices() {
                         <p className="lg:text-xl md:text-lg sm:text-md text-sm leading-loose font-medium text-justify">Managing an in-house HR team and infrastructure can be costly, requiring high salaries, software, and maintenance. Our HRMS reduces expenses by automating processes and streamlining operations.</p>
                     </div>
                     <div className="sm:place-items-end place-items-center place-content-center">
-                        <img src={c1} alt="Card1-Image" className="w-[80%] opacity-90 sm:grayscale hover:grayscale-0 transition-all duration-200 hover:scale-110 cursor-pointer" />
+                        <img src={c1} alt="Card1-Image" className="w-[80%] opacity-90 transition-all duration-200 hover:scale-110 cursor-pointer" />
                     </div><hr className="sm:hidden"/>
                 </div>
                 <div className="grid sm:grid-cols-2 sm:grid-rows-none grid-rows-2 pb-10">
                     <div className="sm:place-items-start place-items-center place-content-center">
-                        <img src={c2} alt="Card1-Image" className="w-[50%] opacity-90 sm:grayscale hover:grayscale-0 transition-all duration-200 hover:scale-110 cursor-pointer" />
+                        <img src={c2} alt="Card1-Image" className="w-[50%] opacity-90 transition-all duration-200 hover:scale-110 cursor-pointer" />
                     </div>
                     <div className="place-content-center">
                         <h1 className="lg:text-3xl md:text-2xl sm:text-xl text-lg font-semibold ">Compliance</h1>
@@ -123,12 +123,12 @@ export default function VirtualHRservices() {
                         <p className="lg:text-xl md:text-lg sm:text-md text-sm leading-loose font-medium text-justify ">Traditional HR tasks like payroll, compliance, and onboarding take up valuable time. Our HRMS automates these processes, boosting efficiency and productivity.</p>
                     </div>
                     <div className="sm:place-items-end place-items-center place-content-center sm:mr-10 mt-5">
-                        <img src={c3} alt="Card1-Image" className="w-[50%] opacity-90 sm:grayscale hover:grayscale-0 transition-all duration-200 hover:scale-110 cursor-pointer" />
+                        <img src={c3} alt="Card1-Image" className="w-[50%] opacity-90 transition-all duration-200 hover:scale-110 cursor-pointer" />
                     </div><hr className="sm:hidden"/>
                 </div>
                 <div className="grid sm:grid-cols-2 sm:grid-rows-none grid-rows-2 pb-10">
                     <div className="sm:place-items-start place-items-center place-content-center">
-                        <img src={c4} alt="Card1-Image" className="w-[50%] opacity-90 sm:grayscale hover:grayscale-0 transition-all duration-200 hover:scale-110 cursor-pointer" />
+                        <img src={c4} alt="Card1-Image" className="w-[50%] opacity-90 transition-all duration-200 hover:scale-110 cursor-pointer" />
                     </div>
                     <div className="place-content-start">
                         <h1 className="lg:text-3xl md:text-2xl sm:text-xl text-lg font-semibold mt-8">Expertise Gap</h1>
@@ -147,17 +147,17 @@ export default function VirtualHRservices() {
 
             <div className="xl:pb-16 md:pb-10 lg:pl-16 lg:pr-10 m-10 grid sm:grid-rows-1 sm:grid-cols-3 grid-cols-1 grid-rows-3 gap-6">
                 <div className="gap-x-6 border-2 border-[#e0e0e0] rounded-3xl overflow-hidden">
-                    <img src={bc1} alt="BC1-Img" className="rounded-t-3xl border-b-2 hover:scale-110 sm:grayscale hover:grayscale-0 transition-all duration-200 cursor-pointer" />
+                    <img src={bc1} alt="BC1-Img" className="rounded-t-3xl border-b-2 hover:scale-110 transition-all duration-200 cursor-pointer" />
                     <h1 className="text-xl mt-5 ml-5 font-medium">Cost-Effective HR Support</h1>
                     <p className="text-md text-[#6B7280] mt-3 ml-5 pb-10">Get expert HR support at a fraction of the cost of hiring a full-time team</p>
                 </div>
                 <div className=" gap-x-6 border-2 border-[#e0e0e0] rounded-3xl overflow-hidden">
-                    <img src={bc3} alt="BC3-Img" className="rounded-t-3xl border-b-2 hover:scale-110 sm:grayscale hover:grayscale-0 transition-all duration-200 cursor-pointer" />
+                    <img src={bc3} alt="BC3-Img" className="rounded-t-3xl border-b-2 hover:scale-110 transition-all duration-200 cursor-pointer" />
                     <h1 className="text-xl mt-5 ml-5 font-medium">AI-Powered Automation</h1>
                     <p className="text-md text-[#6B7280] mt-3 ml-5 pb-10">Streamline HR tasks with intelligent automation</p>
                 </div>
                 <div className="gap-x-6 border-2 border-[#e0e0e0] rounded-3xl overflow-hidden">
-                    <img src={bc2} alt="BC2-Img" className="rounded-t-3xl border-b-2 hover:scale-110 sm:grayscale hover:grayscale-0 transition-all duration-200 cursor-pointer" />
+                    <img src={bc2} alt="BC2-Img" className="rounded-t-3xl border-b-2 hover:scale-110 transition-all duration-200 cursor-pointer" />
                     <h1 className="text-xl mt-5 ml-5 font-medium">Compliance & Policies</h1>
                     <p className="text-md text-[#6B7280] mt-3 ml-5 pb-10">Stay Compliant with automated policy updates and management</p>
                 </div>

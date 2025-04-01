@@ -103,12 +103,12 @@ export default function BackgroundVerifyservices() {
                         <p className="lg:text-xl md:text-lg sm:text-md text-sm leading-loose font-medium text-justify">Hiring candidates with false credentials can lead to trust and compliance issues. Our HRMS includes automated background verification to validate identities, education, and work history.</p>
                     </div>
                     <div className="sm:place-items-end place-items-center place-content-center">
-                        <img src={c1} alt="Card1-Image" className="sm:w-[40%] w-[70%] opacity-90 sm:grayscale hover:grayscale-0 transition-all duration-200 hover:scale-110 cursor-pointer"/>
+                        <img src={c1} alt="Card1-Image" className="sm:w-[40%] w-[70%] opacity-90 transition-all duration-200 hover:scale-110 cursor-pointer"/>
                     </div><hr className="sm:hidden"/>
                 </div>
                 <div className="grid sm:grid-cols-2 sm:grid-rows-none grid-rows-2 pb-10">
                     <div className="sm:place-items-start place-items-center place-content-center">
-                        <img src={c2} alt="Card1-Image" className="sm:w-[40%] w-[50%] opacity-90 sm:grayscale hover:grayscale-0 transition-all duration-200 hover:scale-110 cursor-pointer" />
+                        <img src={c2} alt="Card1-Image" className="sm:w-[40%] w-[50%] opacity-90   transition-all duration-200 hover:scale-110 cursor-pointer" />
                     </div>
                     <div className="place-content-start mt-10">
                         <h1 className="lg:text-3xl md:text-2xl sm:text-xl text-lg font-semibold">Legal Liabilities</h1>
@@ -123,12 +123,12 @@ export default function BackgroundVerifyservices() {
                         <p className="lg:text-xl md:text-lg sm:text-md text-sm leading-loose font-medium text-justify ">Ensuring employee safety is crucial for productivity and well-being. Our HRMS helps track safety protocols, incident reports, and compliance measures to maintain a risk-free workplace.</p>
                     </div>
                     <div className="sm:place-items-end place-items-center place-content-center sm:mr-10 sm:mt-5">
-                        <img src={c3} alt="Card1-Image" className="sm:w-[40%] w-[50%] opacity-90 sm:grayscale hover:grayscale-0 transition-all duration-200 hover:scale-110 cursor-pointer " />
+                        <img src={c3} alt="Card1-Image" className="sm:w-[40%] w-[50%] opacity-90   transition-all duration-200 hover:scale-110 cursor-pointer " />
                     </div><hr className="sm:hidden"/>
                 </div>
                 <div className="grid sm:grid-cols-2 sm:grid-rows-none grid-rows-2 pb-10">
                     <div className="sm:place-items-start place-items-center place-content-center sm:pb-4">
-                        <img src={c4} alt="Card1-Image" className="sm:w-[25%] w-[40%] opacity-90 sm:grayscale hover:grayscale-0 transition-all duration-200 hover:scale-110 cursor-pointer " />
+                        <img src={c4} alt="Card1-Image" className="sm:w-[25%] w-[40%] opacity-90 transition-all duration-200 hover:scale-110 cursor-pointer " />
                     </div>
                     <div className="place-content-start">
                         <h1 className="lg:text-3xl md:text-2xl sm:text-xl text-lg font-semibold">Time-Saving</h1>

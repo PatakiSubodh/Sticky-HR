@@ -103,12 +103,12 @@ export default function HiringRecruitmentservices() {
                         <p className="lg:text-xl md:text-lg sm:text-md text-sm leading-loose font-medium text-justify">From job posting to onboarding, our HRMS streamlines the entire hiring process. Automate candidate screening, interviews, and documentation to build a strong workforce effortlessly.</p>
                     </div>
                     <div className="sm:place-items-end place-items-center place-content-center sm:mr-10">
-                        <img src={c1} alt="Card1-Image" className="w-[60%] opacity-90 sm:grayscale hover:grayscale-0 transition-all duration-200 hover:scale-110 cursor-pointer" />
+                        <img src={c1} alt="Card1-Image" className="w-[60%] opacity-90 transition-all duration-200 hover:scale-110 cursor-pointer" />
                     </div><hr className="sm:hidden"/>
                 </div>
                 <div className="grid sm:grid-cols-2 sm:grid-rows-none grid-rows-2 pb-10">
                     <div className="sm:place-items-start place-items-center place-content-center mt-5">
-                        <img src={c2} alt="Card1-Image" className="w-[50%] opacity-90 sm:grayscale hover:grayscale-0 transition-all duration-200 hover:scale-110 cursor-pointer" />
+                        <img src={c2} alt="Card1-Image" className="w-[50%] opacity-90 transition-all duration-200 hover:scale-110 cursor-pointer" />
                     </div>
                     <div className="sm:place-items-start place-items-center mt-10 ">
                         <h1 className="lg:text-3xl md:text-2xl sm:text-xl text-lg font-semibold ">Industry-Specific Hiring</h1>
@@ -123,12 +123,12 @@ export default function HiringRecruitmentservices() {
                         <p className="lg:text-xl md:text-lg sm:text-md text-sm leading-loose font-medium text-justify">Whether you need short-term contract employees or long-term permanent hires, our HRMS streamlines the staffing process, ensuring compliance, efficiency, and the right talent fit for your organization.</p>
                     </div>
                     <div className="sm:place-items-end place-items-center place-content-center sm:mr-10 mt-5">
-                        <img src={c3} alt="Card1-Image" className="w-[60%] opacity-90 sm:grayscale hover:grayscale-0 transition-all duration-200 hover:scale-110 cursor-pointer" />
+                        <img src={c3} alt="Card1-Image" className="w-[60%] opacity-90 transition-all duration-200 hover:scale-110 cursor-pointer" />
                     </div><hr className="sm:hidden"/>
                 </div>
                 <div className="grid sm:grid-cols-2 sm:grid-rows-none grid-rows-2 pb-10">
                     <div className="sm:place-items-start place-items-center place-content-center">
-                        <img src={c4} alt="Card1-Image" className="w-[50%] opacity-90 sm:grayscale hover:grayscale-0 transition-all duration-200 hover:scale-110 cursor-pointer" />
+                        <img src={c4} alt="Card1-Image" className="w-[50%] opacity-90 transition-all duration-200 hover:scale-110 cursor-pointer" />
                     </div>
                     <div className="sm:place-items-start place-items-center mt-10 ">
                         <h1 className="lg:text-3xl md:text-2xl sm:text-xl text-lg font-semibold ">AI-Powered Talent Matching</h1>
@@ -143,7 +143,7 @@ export default function HiringRecruitmentservices() {
                         <p className="lg:text-xl md:text-lg sm:text-md text-sm leading-loose font-medium text-justify">Streamline recruitment with automated pre-screening and background verification. Our HRMS ensures candidates meet job requirements by validating credentials, experience, and legal records.</p>
                     </div>
                     <div className="sm:place-items-end place-items-center place-content-center sm:mr-10 mt-5">
-                        <img src={c5} alt="Card1-Image" className="w-[60%] opacity-90 sm:grayscale hover:grayscale-0 transition-all duration-200 hover:scale-110 cursor-pointer" />
+                        <img src={c5} alt="Card1-Image" className="w-[60%] opacity-90 transition-all duration-200 hover:scale-110 cursor-pointer" />
                     </div><hr className="sm:hidden mt-10"/>
                 </div>
             </div>

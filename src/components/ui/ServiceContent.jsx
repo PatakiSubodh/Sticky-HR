@@ -3,8 +3,9 @@ import servicesData from "../../../src/data/servicesData.jsx";
 import FadeInUp from "../FadeInUp";
 
 function ServiceContent() {
-    const [activeTab, setActiveTab] = useState("centralized-hrms");
+    const [activeTab, setActiveTab] = useState("hr-automation");
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
     const selectedService = servicesData.find((service) => service.id === activeTab) || servicesData[0];
 
     const toggleDropdown = () => {
@@ -25,13 +26,13 @@ function ServiceContent() {
                 </h2>
             </FadeInUp>
 
-            <div className="px-4 sm:px-8 lg:px-16 py-5 flex flex-col">
-                {/* Custom Dropdown for 375px to xl */}
+            <div className="px-4 sm:px-8 lg:px-8 py-5 flex flex-col lg:w-[95%] mx-auto">
+                {/* Custom Dropdown for 375px to lg */}
                 <FadeInUp delay={0.1}>
-                    <div className="2xl:hidden mb-4 relative">
+                    <div className="lg:hidden mb-4 relative">
                         <button
                             onClick={toggleDropdown}
-                            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-4 py-3 text-sm sm:text-base font-medium text-gray-800 bg-white border border-[#086165] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#086165] flex justify-between items-center"
+                            className="w-full sm:w-1/2 px-4 py-3 text-sm sm:text-base font-medium text-gray-800 bg-white border border-[#086165] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#086165] flex justify-between items-center"
                         >
                             <span>{selectedService.title}</span>
                             <svg
@@ -45,7 +46,7 @@ function ServiceContent() {
                             </svg>
                         </button>
                         {isDropdownOpen && (
-                            <div className="absolute z-10 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                            <div className="absolute z-10 w-full sm:w-1/2 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
                                 {servicesData.map((service) => (
                                     <div
                                         key={service.id}
@@ -64,18 +65,18 @@ function ServiceContent() {
                     </div>
                 </FadeInUp>
 
-                {/* Tabs Section for xl and above */}
+                {/* Tabs Section for lg and above */}
                 <FadeInUp delay={0.1}>
-                    <div className="hidden 2xl:flex flex-wrap justify-between gap-2 sm:gap-4 overflow-x-auto scrollbar-hide mb-[-1px]">
+                    <div className="hidden lg:flex flex-nowrap justify-start gap-2 overflow-x-auto scrollbar-hide mb-[-1px]">
                         {servicesData.map((service) => (
                             <div
                                 key={service.id}
-                                className={`relative flex items-center justify-center px-2 sm:px-4 pt-3 ${
+                                className={`relative flex items-center justify-center px-1 lg:px-2 pt-3 ${
                                     activeTab === service.id ? "bg-[#e4f0f1] rounded-t-xl pb-2" : ""
                                 }`}
                             >
                                 <button
-                                    className={`px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base lg:text-lg font-medium transition duration-300 whitespace-nowrap ${
+                                    className={`px-2 lg:px-3 py-1 lg:py-2 text-xs lg:text-sm font-medium transition duration-300 whitespace-nowrap ${
                                         activeTab === service.id
                                             ? "bg-[#086165] text-white rounded-lg"
                                             : "text-black"
