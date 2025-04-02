@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhoneVolume } from "@fortawesome/free-solid-svg-icons";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { Newsletter } from "./ui/Newsletter";
 
 function Footer() {
   const handleHomeClick = () => {
@@ -111,7 +112,7 @@ function Footer() {
           {/* The Dynamic Duo (Second Row) */}
           <div id="dynamic-duo" className="grid grid-cols-2 gap-4 flex-1">
             <div id="alpha-box" className="p-4 flex-1 text-[#F5F5F5] flex flex-col justify-center">
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <h3 className="text-2xl font-semibold">Our Newsletter</h3>
                 <p className="text-base opacity-80">Enter your email and we will contact you!</p>
               </div>
@@ -119,12 +120,13 @@ function Footer() {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 px-4 py-2 text-[#F5F5F5] bg-[#2D2D2D] outline-none placeholder-[#B0B0B0]"
+                  className="flex-1 px-4 py-2 text-[#F5F5F5] bg-[#2D2D2D] placeholder-[#B0B0B0] outline-none "
                 />
                 <button className="p-3 text-[#F5F5F5]">
                   <FontAwesomeIcon icon={faPaperPlane} />
                 </button>
-              </div>
+              </div> */}
+              <Newsletter />
             </div>
 
             {/* Socials (Nested Grid) */}

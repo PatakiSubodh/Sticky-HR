@@ -7,12 +7,6 @@ export default {
 	],
 	theme: {
     	extend: {
-    		screens: {
-    			'max-1481': {
-    				max: '1482px'
-    			},
-    			'min-1482': '1482px'
-    		},
     		keyframes: {
     			flicker: {
     				'0%, 10%, 20%, 30%, 50%, 70%, 100%': {
