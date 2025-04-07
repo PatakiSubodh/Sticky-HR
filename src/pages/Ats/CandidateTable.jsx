@@ -1,108 +1,146 @@
-import React, { useState } from 'react';
-import usrDoc from '../../assets/images/usrMngt-img/usrDoc.png';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faCheck, faTimes, faMagnifyingGlass, faFilter, faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from "react";
+import usrDoc from "../../assets/images/usrMngt-img/usrDoc.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faEye,
+    faCheck,
+    faTimes,
+    faMagnifyingGlass,
+    faFilter,
+    faCaretLeft,
+    faCaretRight,
+} from "@fortawesome/free-solid-svg-icons";
 
-const candidates = [
-    { name: 'Pravin Kumar', email: 'pravin@gmail.com', jobRole: 'Senior Frontend Developer', experience: '5 years', matchScore: 63, status: 'Shortlisted' },
-    { name: 'John Doe', email: 'john@gmail.com', jobRole: 'UX Designer', experience: '1 year', matchScore: 56, status: 'Pending' },
-    { name: 'Jane Smith', email: 'jane@gmail.com', jobRole: 'Testing', experience: '0 years', matchScore: 78, status: 'Shortlisted' },
-    { name: 'Alice Johnson', email: 'alice@gmail.com', jobRole: 'Senior Frontend Developer', experience: '8 years', matchScore: 76, status: 'Shortlisted' },
-    { name: 'Bob Brown', email: 'bob@gmail.com', jobRole: 'Developer', experience: '12 years', matchScore: 45, status: 'Pending' },
-    { name: 'Charlie Davis', email: 'charlie@gmail.com', jobRole: 'Senior Frontend Developer', experience: '3 years', matchScore: 38, status: 'Shortlisted' },
-    { name: 'Diana Evans', email: 'diana@gmail.com', jobRole: 'Backend Developer', experience: '7 years', matchScore: 82, status: 'Pending' },
-    { name: 'Ethan Fox', email: 'ethan@gmail.com', jobRole: 'DevOps Engineer', experience: '4 years', matchScore: 67, status: 'Shortlisted' },
-    { name: 'Fiona Green', email: 'fiona@gmail.com', jobRole: 'Product Manager', experience: '10 years', matchScore: 91, status: 'Pending' },
-    { name: 'George Hill', email: 'george@gmail.com', jobRole: 'Frontend Developer', experience: '2 years', matchScore: 59, status: 'Shortlisted' },
-    { name: 'Hannah Ivy', email: 'hannah@gmail.com', jobRole: 'QA Engineer', experience: '6 years', matchScore: 73, status: 'Pending' },
-    { name: 'Ian James', email: 'ian@gmail.com', jobRole: 'Full Stack Developer', experience: '9 years', matchScore: 85, status: 'Shortlisted' },
+// Static sample data (used as fallback if no scan results are available)
+const defaultCandidates = [
+    { name: "Pravin Kumar", email: "pravin@gmail.com", jobRole: "Senior Frontend Developer", experience: "5 years", matchScore: 63, status: "Shortlisted" },
+    { name: "John Doe", email: "john@gmail.com", jobRole: "UX Designer", experience: "1 year", matchScore: 56, status: "Pending" },
+    { name: "Jane Smith", email: "jane@gmail.com", jobRole: "Testing", experience: "0 years", matchScore: 78, status: "Shortlisted" },
+    { name: "Alice Johnson", email: "alice@gmail.com", jobRole: "Senior Frontend Developer", experience: "8 years", matchScore: 76, status: "Shortlisted" },
+    { name: "Bob Brown", email: "bob@gmail.com", jobRole: "Developer", experience: "12 years", matchScore: 45, status: "Pending" },
+    { name: "Charlie Davis", email: "charlie@gmail.com", jobRole: "Senior Frontend Developer", experience: "3 years", matchScore: 38, status: "Shortlisted" },
+    { name: "Diana Evans", email: "diana@gmail.com", jobRole: "Backend Developer", experience: "7 years", matchScore: 82, status: "Pending" },
+    { name: "Ethan Fox", email: "ethan@gmail.com", jobRole: "DevOps Engineer", experience: "4 years", matchScore: 67, status: "Shortlisted" },
+    { name: "Fiona Green", email: "fiona@gmail.com", jobRole: "Product Manager", experience: "10 years", matchScore: 91, status: "Pending" },
+    { name: "George Hill", email: "george@gmail.com", jobRole: "Frontend Developer", experience: "2 years", matchScore: 59, status: "Shortlisted" },
+    { name: "Hannah Ivy", email: "hannah@gmail.com", jobRole: "QA Engineer", experience: "6 years", matchScore: 73, status: "Pending" },
+    { name: "Ian James", email: "ian@gmail.com", jobRole: "Full Stack Developer", experience: "9 years", matchScore: 85, status: "Shortlisted" },
 ];
 
-const CandidateTable = () => {
-    const [filterOpen, setFilterOpen] = useState(false);
-    const [searchTerm, setSearchTerm] = useState('');
-    const [appliedExperienceFilter, setAppliedExperienceFilter] = useState('All');
-    const [appliedMatchScoreSort, setAppliedMatchScoreSort] = useState('None');
-    const [appliedStatusFilter, setAppliedStatusFilter] = useState('All');
-    const [tempExperienceFilter, setTempExperienceFilter] = useState('All');
-    const [tempMatchScoreSort, setTempMatchScoreSort] = useState('None');
-    const [tempStatusFilter, setTempStatusFilter] = useState('All');
+const CandidateTable = ({ scanResults = [] }) => {
+    // State for filters, sorting, and pagination
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [experienceFilter, setExperienceFilter] = useState("All");
+    const [matchScoreSort, setMatchScoreSort] = useState("None");
+    const [statusFilter, setStatusFilter] = useState("All");
+    const [tempExperienceFilter, setTempExperienceFilter] = useState("All");
+    const [tempMatchScoreSort, setTempMatchScoreSort] = useState("None");
+    const [tempStatusFilter, setTempStatusFilter] = useState("All");
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 5; // Number of candidates per page
+    const candidatesPerPage = 5;
 
-    const experienceOptions = [
-        { label: 'All', value: 'All' },
-        { label: 'Fresher', value: '0 years' },
-        { label: 'Junior Level', value: '1-2 years' },
-        { label: 'Mid-Level', value: '3-5 years' },
-        { label: 'Senior Level', value: '6-10 years' },
-        { label: 'Expert / Leadership', value: '10+ years' },
+    // Options for experience and status filters
+    const experienceLevels = [
+        { label: "All", value: "All" },
+        { label: "Fresher", value: "0 years" },
+        { label: "Junior Level", value: "1-2 years" },
+        { label: "Mid-Level", value: "3-5 years" },
+        { label: "Senior Level", value: "6-10 years" },
+        { label: "Expert / Leadership", value: "10+ years" },
     ];
 
-    const statusOptions = ['All', 'Shortlisted', 'Pending'];
+    const statusOptions = ["All", "Shortlisted", "Pending"];
 
-    const parseExperience = (exp) => {
-        const years = parseInt(exp.split(' ')[0], 10);
+    // Function to view a file (for scanned reports)
+    const viewFile = (file) => {
+        const fileURL = URL.createObjectURL(file);
+        window.open(fileURL, "_blank");
+        setTimeout(() => URL.revokeObjectURL(fileURL), 1000);
+    };
+
+    // Parse experience string to a number of years
+    const getExperienceYears = (experience) => {
+        const years = parseInt(experience.split(" ")[0], 10);
         return isNaN(years) ? 0 : years;
     };
 
-    const isInExperienceRange = (exp, range) => {
-        const years = parseExperience(exp);
-        if (range === 'All') return true;
-        if (range === '0 years') return years === 0;
-        if (range === '1-2 years') return years >= 1 && years <= 2;
-        if (range === '3-5 years') return years >= 3 && years <= 5;
-        if (range === '6-10 years') return years >= 6 && years <= 10;
-        if (range === '10+ years') return years > 10;
-        return false;
+    // Check if experience falls within the selected range
+    const matchesExperienceRange = (experience, range) => {
+        const years = getExperienceYears(experience);
+        switch (range) {
+            case "All":
+                return true;
+            case "0 years":
+                return years === 0;
+            case "1-2 years":
+                return years >= 1 && years <= 2;
+            case "3-5 years":
+                return years >= 3 && years <= 5;
+            case "6-10 years":
+                return years >= 6 && years <= 10;
+            case "10+ years":
+                return years > 10;
+            default:
+                return false;
+        }
     };
 
-    const filteredCandidates = candidates
-        .filter(candidate => 
-            candidate.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-            isInExperienceRange(candidate.experience, appliedExperienceFilter) &&
-            (appliedStatusFilter === 'All' || candidate.status === appliedStatusFilter)
+    // Use scanResults if available; otherwise, use defaultCandidates
+    const data = scanResults.length > 0 ? scanResults : defaultCandidates;
+
+    // Apply filters and sorting
+    const filteredData = data
+        .filter(
+            (candidate) =>
+                candidate.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
+                matchesExperienceRange(candidate.experience, experienceFilter) &&
+                (statusFilter === "All" || candidate.status === statusFilter)
         )
         .sort((a, b) => {
-            if (appliedMatchScoreSort === 'Ascending') return a.matchScore - b.matchScore;
-            if (appliedMatchScoreSort === 'Descending') return b.matchScore - a.matchScore;
+            if (matchScoreSort === "Ascending") return a.matchScore - b.matchScore;
+            if (matchScoreSort === "Descending") return b.matchScore - a.matchScore;
             return 0;
         });
 
-    // Pagination logic
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentCandidates = filteredCandidates.slice(indexOfFirstItem, indexOfLastItem);
-    const totalPages = Math.ceil(filteredCandidates.length / itemsPerPage);
+    // Pagination calculations
+    const totalPages = Math.ceil(filteredData.length / candidatesPerPage);
+    const startIndex = (currentPage - 1) * candidatesPerPage;
+    const endIndex = startIndex + candidatesPerPage;
+    const currentData = filteredData.slice(startIndex, endIndex);
 
-    const clearFilters = () => {
-        setTempExperienceFilter('All');
-        setTempMatchScoreSort('None');
-        setTempStatusFilter('All');
-        setAppliedExperienceFilter('All');
-        setAppliedMatchScoreSort('None');
-        setAppliedStatusFilter('All');
-        setSearchTerm('');
-        setCurrentPage(1); // Reset to first page
-        setFilterOpen(false);
+    // Reset filters to default values
+    const resetFilters = () => {
+        setTempExperienceFilter("All");
+        setTempMatchScoreSort("None");
+        setTempStatusFilter("All");
+        setExperienceFilter("All");
+        setMatchScoreSort("None");
+        setStatusFilter("All");
+        setSearchQuery("");
+        setCurrentPage(1);
+        setIsFilterOpen(false);
     };
 
+    // Apply temporary filter values
     const applyFilters = () => {
-        setAppliedExperienceFilter(tempExperienceFilter);
-        setAppliedMatchScoreSort(tempMatchScoreSort);
-        setAppliedStatusFilter(tempStatusFilter);
-        setCurrentPage(1); // Reset to first page when applying filters
-        setFilterOpen(false);
+        setExperienceFilter(tempExperienceFilter);
+        setMatchScoreSort(tempMatchScoreSort);
+        setStatusFilter(tempStatusFilter);
+        setCurrentPage(1);
+        setIsFilterOpen(false);
     };
 
-    const handlePageChange = (page) => {
+    // Handle page navigation
+    const changePage = (page) => {
         setCurrentPage(page);
     };
 
     return (
         <div className="w-full h-full flex flex-col">
             <h1 className="text-xl font-normal">Candidates</h1>
-            {/* Header with Search and Filters */}
+
+            {/* Search and Filter Section */}
             <div className="flex justify-end items-center mb-4 top-0 z-10">
                 <div className="flex items-center space-x-2">
                     <div className="relative">
@@ -110,25 +148,28 @@ const CandidateTable = () => {
                             type="text"
                             placeholder="Search by name"
                             className="border border-gray-300 rounded-md pl-8 pr-2 py-1 text-sm focus:outline-none"
-                            value={searchTerm}
-                            onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }} // Reset to page 1 on search
+                            value={searchQuery}
+                            onChange={(e) => {
+                                setSearchQuery(e.target.value);
+                                setCurrentPage(1);
+                            }}
                         />
                         <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400">
                             <FontAwesomeIcon icon={faMagnifyingGlass} className="text-gray-700" />
                         </span>
                     </div>
                     <div className="relative">
-                        <button 
+                        <button
                             className="border border-[#3B9B9F] bg-[#DEEEEF] rounded-md px-3 py-1 text-sm flex items-center transition-all duration-200 ease-in-out 
                                     hover:bg-[#3B9B9F] hover:shadow-md hover:text-white group"
-                            onClick={() => setFilterOpen(!filterOpen)}
+                            onClick={() => setIsFilterOpen(!isFilterOpen)}
                         >
                             <span className="ml-1 flex items-center space-x-1 text-[#086165] group-hover:text-white">
                                 <FontAwesomeIcon icon={faFilter} className="group-hover:text-white" />
                                 <span>Filters</span>
                             </span>
                         </button>
-                        {filterOpen && (
+                        {isFilterOpen && (
                             <div className="absolute right-0 mt-2 w-64 bg-white border border-gray-300 rounded-md shadow-lg p-4 z-20">
                                 <div className="mb-4">
                                     <label className="block text-sm font-medium text-gray-700">Experience</label>
@@ -137,8 +178,10 @@ const CandidateTable = () => {
                                         onChange={(e) => setTempExperienceFilter(e.target.value)}
                                         className="mt-1 block w-full border border-gray-300 rounded-md p-2 text-sm"
                                     >
-                                        {experienceOptions.map(option => (
-                                            <option key={option.value} value={option.value}>{option.label}</option>
+                                        {experienceLevels.map((option) => (
+                                            <option key={option.value} value={option.value}>
+                                                {option.label}
+                                            </option>
                                         ))}
                                     </select>
                                 </div>
@@ -161,8 +204,10 @@ const CandidateTable = () => {
                                         onChange={(e) => setTempStatusFilter(e.target.value)}
                                         className="mt-1 block w-full border border-gray-300 rounded-md p-2 text-sm"
                                     >
-                                        {statusOptions.map(option => (
-                                            <option key={option} value={option}>{option}</option>
+                                        {statusOptions.map((option) => (
+                                            <option key={option} value={option}>
+                                                {option}
+                                            </option>
                                         ))}
                                     </select>
                                 </div>
@@ -174,7 +219,7 @@ const CandidateTable = () => {
                                         Apply Filters
                                     </button>
                                     <button
-                                        onClick={clearFilters}
+                                        onClick={resetFilters}
                                         className="w-full bg-gray-500 text-white rounded-md py-1 text-sm hover:bg-gray-600"
                                     >
                                         Clear Filters
@@ -186,7 +231,7 @@ const CandidateTable = () => {
                 </div>
             </div>
 
-            {/* Table Container */}
+            {/* Table Section */}
             <div className="flex-1">
                 <table className="w-full text-sm text-left">
                     <thead>
@@ -200,8 +245,8 @@ const CandidateTable = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {currentCandidates.length > 0 ? (
-                            currentCandidates.map((candidate, index) => (
+                        {currentData.length > 0 ? (
+                            currentData.map((candidate, index) => (
                                 <tr key={index} className="border-t">
                                     <td className="py-3 flex items-center space-x-2">
                                         <div className="w-8 h-8 bg-gray-200 rounded-full">
@@ -228,18 +273,27 @@ const CandidateTable = () => {
                                     <td className="py-3">
                                         <span
                                             className={`px-2 py-1 rounded-full text-xs ${
-                                                candidate.status === 'Shortlisted'
-                                                    ? 'bg-[#DCFCE7] text-[#166534]'
-                                                    : 'bg-[#FEF9C3] text-[#854D0E]'
+                                                candidate.status === "Shortlisted"
+                                                    ? "bg-[#DCFCE7] text-[#166534]"
+                                                    : "bg-[#FEF9C3] text-[#854D0E]"
                                             }`}
                                         >
                                             {candidate.status}
                                         </span>
                                     </td>
                                     <td className="py-3 flex space-x-2">
-                                        <button className="text-gray-500 hover:text-gray-700">
-                                            <FontAwesomeIcon icon={faEye} />
-                                        </button>
+                                        {candidate.file ? (
+                                            <button
+                                                className="text-gray-500 hover:text-gray-700"
+                                                onClick={() => viewFile(candidate.file)}
+                                            >
+                                                <FontAwesomeIcon icon={faEye} />
+                                            </button>
+                                        ) : (
+                                            <button className="text-gray-500 hover:text-gray-700">
+                                                <FontAwesomeIcon icon={faEye} />
+                                            </button>
+                                        )}
                                         <button className="text-green-500 hover:text-green-700">
                                             <FontAwesomeIcon icon={faCheck} />
                                         </button>
@@ -260,34 +314,34 @@ const CandidateTable = () => {
                 </table>
             </div>
 
-            {/* Pagination */}
+            {/* Pagination Section */}
             <div className="flex justify-end items-center mt-4">
                 <div className="flex space-x-2">
                     <button
-                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                        onClick={() => changePage(Math.max(currentPage - 1, 1))}
                         disabled={currentPage === 1}
                         className={`w-8 h-8 flex items-center justify-center border border-[#A0BDBF] rounded ${
-                            currentPage === 1 ? 'text-gray-300 cursor-not-allowed' : 'text-[#FFC600]'
+                            currentPage === 1 ? "text-gray-300 cursor-not-allowed" : "text-[#FFC600]"
                         }`}
                     >
                         <FontAwesomeIcon icon={faCaretLeft} />
                     </button>
-                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                         <button
                             key={page}
-                            onClick={() => handlePageChange(page)}
+                            onClick={() => changePage(page)}
                             className={`w-8 h-8 flex items-center justify-center border border-[#A0BDBF] rounded ${
-                                currentPage === page ? 'bg-teal-500 text-white' : 'text-gray-700'
+                                currentPage === page ? "bg-teal-500 text-white" : "text-gray-700"
                             }`}
                         >
                             {page}
                         </button>
                     ))}
                     <button
-                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                        onClick={() => changePage(Math.min(currentPage + 1, totalPages))}
                         disabled={currentPage === totalPages}
                         className={`w-8 h-8 flex items-center justify-center border border-[#A0BDBF] rounded ${
-                            currentPage === totalPages ? 'text-gray-300 cursor-not-allowed' : 'text-[#FFC600]'
+                            currentPage === totalPages ? "text-gray-300 cursor-not-allowed" : "text-[#FFC600]"
                         }`}
                     >
                         <FontAwesomeIcon icon={faCaretRight} />

@@ -32,21 +32,24 @@ function Footer() {
           {/* company phone  */}
           <div id="mighty-mid" className="p-4 flex flex-col space-y-2">
             <h3 className="text-lg font-bold">Contact Us</h3>
-            <a href="tel:+919033244538" className="flex opacity-75 hover:opacity-100">
-              <div className="bg-[#086165] text-white text-sm font-medium px-4 py-2 rounded-3xl flex items-center opacity-100">
-                +91 90332 44538
-              </div>
-              <div className="bg-[#086165] text-white p-3 rounded-full flex items-center justify-center">
-                <FontAwesomeIcon icon={faPhoneVolume} className="text-lg" />
-              </div>
+            <span>
+            <a href="tel:+919033244538" className="inline-flex opacity-75 hover:opacity-100">
+                <div className="bg-[#086165] text-white text-sm font-medium px-4 py-2 rounded-3xl flex items-center opacity-100">
+                    +91 90332 44538
+                </div>
+                <div className="bg-[#086165] text-white p-3 rounded-full flex items-center justify-center">
+                    <FontAwesomeIcon icon={faPhoneVolume} className="text-lg" />
+                </div>
             </a>
-          </div>
+            </span>
+        </div>
 
           {/* location and email */}
           <div id="mighty-bottom" className="p-4 flex flex-col gap-4">
             {/* office location */}
             <div className="flex flex-col text-white">
               <h3 className="text-lg font-bold">Location</h3>
+              <span>
               <a 
                 href="https://maps.google.com/?q=Garuda+Bhive+workspace,+Kuvempu+Bus+Station,+BTM+Layout,+Bengaluru,+Karnataka-560068"
                 target="_blank"
@@ -55,13 +58,16 @@ function Footer() {
               >
                 Garuda Bhive workspace, Kuvempu Bus Station, BTM Layout, Bengaluru, Karnataka-560068
               </a>
+              </span>
             </div>
             {/* office email */}
             <div className="flex flex-col text-white">
               <h3 className="text-lg font-bold">Inquiry</h3>
+              <span>
               <a href="mailto:shakti@stickyhr.com" className="text-sm opacity-65 hover:opacity-100">
                 shakti@stickyhr.com
               </a>
+              </span>
             </div>
           </div>
         </div>
@@ -79,19 +85,19 @@ function Footer() {
             <div id="blaze-two" className="p-4 flex-1">
               <h3 className="text-2xl font-semibold text-[#F5F5F5]">Features</h3>
               <ul className="mt-3 text-base space-y-2">
-                <li><Link to="/features/user-mangement" className="text-[#F5F5F5] opacity-65 hover:opacity-100">User Management</Link></li>
-                <li><Link to="/features/attendance-mangement" className="text-[#F5F5F5] opacity-65 hover:opacity-100">Attendence Management</Link></li>
-                <li><Link to="/features/leave-mangement" className="text-[#F5F5F5] opacity-65 hover:opacity-100">Leave Management</Link></li>
-                <li><Link to="/features/payroll-mangement" className="text-[#F5F5F5] opacity-65 hover:opacity-100">Payroll Management</Link></li>
-                <li><Link to="/features/expense-mangement" className="text-[#F5F5F5] opacity-65 hover:opacity-100">Expense Management</Link></li>
-                <li><Link to="/features/assets-mangement" className="text-[#F5F5F5] opacity-65 hover:opacity-100">Assets Management</Link></li>
-                <li><Link to="/features/document-mangement" className="text-[#F5F5F5] opacity-65 hover:opacity-100">Document Management</Link></li>
+                <li><Link to="/features/user-management" className="text-[#F5F5F5] opacity-65 hover:opacity-100">User Management</Link></li>
+                <li><Link to="/features/attendance-management" className="text-[#F5F5F5] opacity-65 hover:opacity-100">Attendence Management</Link></li>
+                <li><Link to="/features/leave-management" className="text-[#F5F5F5] opacity-65 hover:opacity-100">Leave Management</Link></li>
+                <li><Link to="/features/payroll-management" className="text-[#F5F5F5] opacity-65 hover:opacity-100">Payroll Management</Link></li>
+                <li><Link to="/features/expense-management" className="text-[#F5F5F5] opacity-65 hover:opacity-100">Expense Management</Link></li>
+                <li><Link to="/features/assets-management" className="text-[#F5F5F5] opacity-65 hover:opacity-100">Assets Management</Link></li>
+                <li><Link to="/features/document-management" className="text-[#F5F5F5] opacity-65 hover:opacity-100">Document Management</Link></li>
               </ul>
             </div>
             <div id="blaze-three" className="p-4 flex-1">
               <h3 className="text-2xl font-semibold text-[#F5F5F5]">Services</h3>
               <ul className="mt-3 text-base space-y-2">
-                <li><Link to="/services/virtaul-hr-service" className="text-[#F5F5F5] opacity-65 hover:opacity-100">Virtual HR</Link></li>
+                <li><Link to="/services/virtual-hr-service" className="text-[#F5F5F5] opacity-65 hover:opacity-100">Virtual HR</Link></li>
                 <li><Link to="/services/hiring-and-recruitment-service" className="text-[#F5F5F5] opacity-65 hover:opacity-100">Hiring & Recruitment</Link></li>
                 <li><Link to="/services/background-verification-service" className="text-[#F5F5F5] opacity-65 hover:opacity-100">Background Verification</Link></li>
                 <li><Link to="/services/training-service" className="text-[#F5F5F5] opacity-65 hover:opacity-100">Training</Link></li>
@@ -183,16 +189,24 @@ function Footer() {
 
       {/* copyright section */}
       <div className="flex justify-around items-center text-sm border-t-[1px] border-[#666666] mt-6 pt-6">
-          <div className="cpyrt opacity-65 hover:opacity-100 cursor-pointer">
-            &#169; 2025 StickyHR Solution Pvt. Ltd, All rights reserved
-          </div>
+        {/* <div className="cpyrt opacity-65 hover:opacity-100 cursor-pointer">
+          &#169; 2025 StickyHR Solution Pvt. Ltd, All rights reserved
+        </div> */}
 
-          <div className="policies flex gap-6">
-            <a href="#" className="opacity-65 hover:opacity-100">Terms of Service</a>
-            <a href="#" className="opacity-65 hover:opacity-100">Privacy Policy</a>
-            <a href="#" className="opacity-65 hover:opacity-100">Security Policy</a>
-          </div>
+        <div className="policies flex gap-6">
+          <Link to="/terms-of-service" className="opacity-65 hover:opacity-100">Terms of Service</Link>
+          <Link to="/privacy-policy" className="opacity-65 hover:opacity-100">Privacy Policy</Link>
+          <Link to="/security-policy" className="opacity-65 hover:opacity-100">Security Policy</Link>
         </div>
+      </div>
+      <div className="text-center text-sm mt-4 opacity-65">
+        &#64; 2025 StickyHR Solution Pvt. Ltd. All rights reserved. <br />
+        {/* Developed &#64;<a href="https://www.thewebsort.com/">The Websort</a> */}
+      </div>
+      <div className="text-center text-sm mt-4">
+        {/* &#64; 2025 StickyHR Solution Pvt. Ltd. All rights reserved. <br /> */}
+        <a href="https://www.thewebsort.com/"><span className="opacity-65 hover:opacity-100 hover:underline cursor-pointer">Developed by Websort</span></a>
+      </div>
     </footer>
 
 
@@ -229,6 +243,7 @@ function Footer() {
             <div className="flex mt-5 gap-x-5">
 
               {/* whatsapp */}
+              <span>
               <a href="https://wa.me/919033244538" target="_blank" rel="noopener noreferrer" >
                   <div className="h-10 flex items-center justify-center w-10 ">
                     <div className="bg-[#393939] opacity-75 w-10 h-10 hover:opacity-100 cursor-pointer p-5 rounded-full flex items-center justify-center">
@@ -236,8 +251,10 @@ function Footer() {
                     </div>
                   </div>
               </a>
+              </span>
 
               {/* twitter or X */}
+              <span>
               <a href="https://x.com/StickyHr" target="_blank" rel="noopener noreferrer">
                 <div className="h-10 flex items-center justify-center w-10">
                   <div className="bg-[#393939] opacity-75 w-10 h-10 hover:opacity-100 cursor-pointer p-5 rounded-full flex items-center justify-center">
@@ -245,8 +262,10 @@ function Footer() {
                   </div>
                 </div>
               </a>
+              </span>
 
               {/* youtube */}
+              <span>
               <a href="https://www.youtube.com/channel/UCOlD2Nq3o2S269G3_2lXc6Q" target="_blank" rel="noopener noreferrer">
                 <div className="h-10 flex items-center justify-center w-10">
                   <div className="bg-[#393939] opacity-75 w-10 h-10 hover:opacity-100 cursor-pointer p-5 rounded-full flex items-center justify-center">
@@ -254,8 +273,10 @@ function Footer() {
                   </div>
                 </div>
               </a>
+              </span>
 
               {/* linkedin */}
+              <span>
               <a href="https://www.linkedin.com/company/stickyhr/" target="_blank" rel="noopener noreferrer">
                 <div className="h-10 flex items-center justify-center w-10">
                   <div className="bg-[#393939] opacity-75 w-10 h-10 hover:opacity-100 cursor-pointer p-5 rounded-full flex items-center justify-center">
@@ -263,8 +284,10 @@ function Footer() {
                   </div>
                 </div>
               </a>
+              </span>
 
               {/* instagram */}
+              <span>
               <a href="https://www.instagram.com/stickyhr" target="_blank" rel="noopener noreferrer">
                 <div className="h-10 flex items-center justify-center w-10">
                   <div className="bg-[#393939] opacity-75 w-10 h-10 hover:opacity-100 cursor-pointer p-5 rounded-full flex items-center justify-center">
@@ -272,8 +295,8 @@ function Footer() {
                   </div>
                 </div>
               </a>
+              </span>
             </div>
-
             <hr className="mt-5 border-gray-500"/>
 
           </div>
@@ -283,6 +306,7 @@ function Footer() {
             {/* office location */}
             <div className="flex flex-col text-[#E6E6E6]">
               <h3 className="text-xl font-bold">Location</h3>
+              <span>
               <a 
                 href="https://maps.google.com/?q=Garuda+Bhive+workspace,+Kuvempu+Bus+Station,+BTM+Layout,+Bengaluru,+Karnataka-560068"
                 target="_blank"
@@ -291,15 +315,22 @@ function Footer() {
               >
                 Garuda Bhive workspace, Kuvempu Bus Station, BTM Layout, Bengaluru, Karnataka-560068
               </a>
+              </span>
             </div>
             {/* office email */}
             <div className="flex flex-col text-[#E6E6E6]">
               <h3 className="text-xl  font-bold">Inquiry</h3>
+              <span>
               <a href="mailto:shakti@stickyhr.com" className="mt-2 text-md opacity-65 hover:opacity-100">
                 shakti@stickyhr.com
               </a>
+              </span>
             </div>
           </div>
+          
+          <div className="mt-4">
+              <Newsletter />
+            </div>
           <hr className="mt-5 border-gray-500"/>
         </div>
 
@@ -314,13 +345,13 @@ function Footer() {
             </div>
             <div className="grid place-content-start gap-y-2">
               <h3 className="text-2xl font-semibold text-[#F5F5F5]">Features</h3>
-              <Link to="/features/user-mangement" className="text-[#F5F5F5] opacity-65 hover:opacity-100 text-sm">User Management</Link>
-              <Link to="/features/attendance-mangement" className="text-[#F5F5F5] opacity-65 hover:opacity-100 text-sm">Attendence Management</Link>
-              <Link to="/features/leave-mangement" className="text-[#F5F5F5] opacity-65 hover:opacity-100 text-sm">Leave Management</Link>
-              <Link to="/features/payroll-mangement" className="text-[#F5F5F5] opacity-65 hover:opacity-100 text-sm">Payroll Management</Link>
-              <Link to="/features/expense-mangement" className="text-[#F5F5F5] opacity-65 hover:opacity-100 text-sm">Expense Management</Link>
-              <Link to="/features/assets-mangement" className="text-[#F5F5F5] opacity-65 hover:opacity-100 text-sm">Assets Management</Link>
-              <Link to="/features/document-mangement" className="text-[#F5F5F5] opacity-65 hover:opacity-100 text-sm">Document Management</Link>
+              <Link to="/features/user-management" className="text-[#F5F5F5] opacity-65 hover:opacity-100 text-sm">User Management</Link>
+              <Link to="/features/attendance-management" className="text-[#F5F5F5] opacity-65 hover:opacity-100 text-sm">Attendence Management</Link>
+              <Link to="/features/leave-management" className="text-[#F5F5F5] opacity-65 hover:opacity-100 text-sm">Leave Management</Link>
+              <Link to="/features/payroll-management" className="text-[#F5F5F5] opacity-65 hover:opacity-100 text-sm">Payroll Management</Link>
+              <Link to="/features/expense-management" className="text-[#F5F5F5] opacity-65 hover:opacity-100 text-sm">Expense Management</Link>
+              <Link to="/features/assets-management" className="text-[#F5F5F5] opacity-65 hover:opacity-100 text-sm">Assets Management</Link>
+              <Link to="/features/document-management" className="text-[#F5F5F5] opacity-65 hover:opacity-100 text-sm">Document Management</Link>
             </div>
 
           </div>
@@ -329,7 +360,7 @@ function Footer() {
 
             <div className="grid place-content-start gap-y-2">
               <h3 className="text-2xl font-semibold text-[#F5F5F5]">Services</h3>
-                <Link to="/services/virtaul-hr-service" className="text-[#F5F5F5] opacity-65 hover:opacity-100 text-sm">Virtual HR</Link>
+                <Link to="/services/virtual-hr-service" className="text-[#F5F5F5] opacity-65 hover:opacity-100 text-sm">Virtual HR</Link>
                 <Link to="/services/hiring-and-recruitment-service" className="text-[#F5F5F5] opacity-65 hover:opacity-100 text-sm">Hiring & Recruitment</Link>
                 <Link to="/services/background-verification-service" className="text-[#F5F5F5] opacity-65 hover:opacity-100 text-sm">Background Verification</Link>
                 <Link to="/services/training-service" className="text-[#F5F5F5] opacity-65 hover:opacity-100 text-sm">Training</Link>
@@ -346,15 +377,19 @@ function Footer() {
           </div>
 
         </div>
-      {/* copyright section */}
-      <div className=" text-sm border-t-[1px] border-[#666666] mt-6 pt-4 mb-6">
+        {/* copyright section */}
+        <div className="flex flex-col items-center gap-y-2 text-sm border-t-[1px] border-[#666666] mt-6 pt-4 mb-6">
+          <div className="flex gap-x-4 mt-1">
+            <Link to="/terms-of-service" className="opacity-65 hover:opacity-100">Terms of Service</Link>
+            <Link to="/privacy-policy" className="opacity-65 hover:opacity-100">Privacy Policy</Link>
+            <Link to="/security-policy" className="opacity-65 hover:opacity-100">Security Policy</Link>
+          </div>
           <div className="cpyrt opacity-65 hover:opacity-100 text-[97%] cursor-pointer">
             &#169; 2025 StickyHR Solution Pvt. Ltd, All rights reserved
           </div>
-          <div className="flex gap-x-4 mt-1">
-            <Link to="#" className="opacity-65 hover:opacity-100">Terms of Service</Link>
-            <Link to="#" className="opacity-65 hover:opacity-100">Privacy Policy</Link>
-            <Link to="#" className="opacity-65 hover:opacity-100">Security Policy</Link>
+          <div className="text-sm opacity-65 hover:opacity-100">
+            {/* &#64; 2025 StickyHR Solution Pvt. Ltd. All rights reserved. <br /> */}
+            <a href="https://www.thewebsort.com/"><span className="hover:underline cursor-pointer">Developed by Websort</span></a>
           </div>
         </div>
     </footer>

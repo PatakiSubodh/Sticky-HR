@@ -36,6 +36,11 @@ import Dashboard from "@/pages/Ats/Dashboard";
 import ResumeScanner from "@/pages/Ats/ResumeScanner";
 import Report from "@/pages/Ats/Report";
 
+import TermsOfService from '@/pages/policies/TermsOfService.jsx';
+import PrivacyPolicy from '@/pages/policies/PrivacyPolicy.jsx';
+import SecurityPolicy from '@/pages/policies/SecurityPolicy.jsx';
+
+
 function App() {
   const location = useLocation();
   const isAtsRoute = location.pathname.startsWith('/ats');
@@ -77,6 +82,10 @@ function App() {
         <Route path="/careers" element={<Careers />} />
         <Route path="/customers" element={<Customers />} />
         <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/security-policy" element={<SecurityPolicy />} />
+        
 
         {/* Fallback for unrecognized routes in default interface */}
         <Route path="*" element={<NotFound />} />

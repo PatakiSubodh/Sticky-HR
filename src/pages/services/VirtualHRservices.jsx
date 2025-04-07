@@ -45,6 +45,12 @@ export default function VirtualHRservices() {
             <div className="lg:pl-8 lg:pr-8 mx-10 xl:mt-10 ">
                 <div className="xl:flex xl:justify-center grid grid-flow-col grid-rows-2">
                     <div className="bg-[#086165] my-14 rounded-3xl xl:w-[100%] relative overflow-hidden">
+                        {/* Board Image */}
+                        <div className="absolute xl:right-[2rem] xl:top-[2rem] lg:bottom-[9rem] lg:right-[2.5rem] lg:top-[3rem] md:right-[1rem] md:bottom-[5rem] md:top-[1rem]  sm:right-[1.5rem] sm:bottom-[5rem] sm:top-[1.5rem] right-[.5rem] bottom-[3rem] top-[.5rem]">
+                            <FadeInUp delay={0.4} duration={1}>
+                                <img src={board} alt="board" className="xl:w-[27rem] lg:w-[50rem] md:w-[37rem] sm:w-[28rem] w-[20rem]" loading="lazy" />
+                            </FadeInUp>
+                        </div>
 
                         {/* Lady Image */}
                         <div className="absolute left-0 bottom-0">
@@ -57,13 +63,6 @@ export default function VirtualHRservices() {
                         <div className="absolute 2xl:left-[23.1rem] xl:left-[18.5rem] lg:left-[30.2rem] md:left-[23.3rem] sm:left-[14.9rem] left-[12.1rem] transition-all bottom-0 z-20">
                             <FadeInUp delay={0.3} duration={1}>
                                 <img src={grad} alt="grad" className="2xl:w-[2rem] xl:w-[1.6rem] lg:w-[2.78rem] md:w-[1.8rem] sm:w-[1.1rem] w-[.9rem]" loading="lazy" />
-                            </FadeInUp>
-                        </div>
-
-                        {/* Board Image */}
-                        <div className="absolute xl:right-[2rem] xl:top-[2rem] lg:bottom-[9rem] lg:right-[2.5rem] lg:top-[3rem] md:right-[1rem] md:bottom-[5rem] md:top-[1rem]  sm:right-[1.5rem] sm:bottom-[5rem] sm:top-[1.5rem] right-[.5rem] bottom-[3rem] top-[.5rem]">
-                            <FadeInUp delay={0.4} duration={1}>
-                                <img src={board} alt="board" className="xl:w-[27rem] lg:w-[50rem] md:w-[37rem] sm:w-[28rem] w-[20rem]" loading="lazy" />
                             </FadeInUp>
                         </div>
 
@@ -82,10 +81,9 @@ export default function VirtualHRservices() {
                     <div className="flex flex-col justify-center items-center text-center">
                         <h1 className="xl:text-5xl lg:text-4xl md:text-3xl sm:text-2xl text-xl font-semibold">How it work</h1>
                         <p className="xl:text-xl lg:text-lg md:text-md sm:text-sm text-xs font-normal py-5">Comprehensive Solutions for Efficient Workforce Management</p>
-                        <img src={steps} alt="Steps-Img" className="w-[50%]"/>
+                        <img src={steps} alt="Steps-Img" className="sm:w-[50%] w-[70%] "/>
                     </div>
                 </div>
-                
             </div>
             
             {/* HR Challenges */}

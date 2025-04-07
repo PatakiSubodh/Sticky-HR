@@ -1,7 +1,8 @@
+import MultiStepForm from "./MultistepForm";
 export default function ResumeScanner() {
     return (
         <>
-            <h1 className="mt-10 ml-20">This is Resume Scanner</h1>
+            <MultiStepForm />
         </>
     );
 }

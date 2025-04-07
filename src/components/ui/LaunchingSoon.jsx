@@ -12,7 +12,7 @@ export default function LaunchingSoon() {
     return (
         <div className="launching-content w-full bg-[#DEEEEF] flex flex-col items-center px-6 py-10 text-center mt-10">
 
-            <div className="w-full flex justify-start pl-6 mb-4 relative">
+            <div className="w-full flex justify-start pl-6 mb-4 absolute">
                 <FadeInUp delay={0.1}>
                     {/* Monitor Container */}
                     <div className="relative inline-block">
@@ -20,12 +20,12 @@ export default function LaunchingSoon() {
                         <img 
                             src={computer} 
                             alt="Launching Soon" 
-                            className="2xl:w-48 xl:w-44 md:w-40 sm:w-32 w-24 relative z-10" 
+                            className="2xl:w-48 xl:w-44 lg:w-32 md:w-32 sm:w-28 w-24 relative z-10" 
                         />
                         {/* Launching Soon Text (Centered on the Monitor) */}
                         <div className="absolute inset-0 flex flex-col items-center justify-center z-20 text-center animate-bounce">
-                            <span className="block text-xs sm:text-base md:text-lg xl:text-xl italic">LAUNCHING</span>
-                            <span className="block text-xs sm:text-lg md:text-xl xl:text-2xl font-bold">SOON</span>
+                            <span className="block text-xs sm:text-sm md:text-base xl:text-xl italic">LAUNCHING</span>
+                            <span className="block text-xs sm:text-sm md:text-base xl:text-2xl font-bold">SOON</span>
                         </div>
                     </div>
                 </FadeInUp>
@@ -33,7 +33,7 @@ export default function LaunchingSoon() {
 
             <FadeInUp delay={0.1}>
                 {/* Title */}
-                <h1 className="text-2xl md:text-4xl font-bold text-[#035B5F]">
+                <h1 className="text-2xl md:text-4xl font-bold text-[#035B5F] xl:mt-[3rem] lg:mt-[4rem] md:mt-[6.5rem] sm:mt-[6.5rem] mt-[6rem]">
                     Smart Virtual HR - HR On Subscription
                 </h1>
             </FadeInUp>

@@ -133,7 +133,7 @@ function Navbar() {
             {/* LOGO and Hamburger */}
             <div className="flex justify-between items-center w-full lg:w-auto ml-4">
                 <FadeInUp delay={0.1}>
-                    <Link to="/"><img src={logo} alt="company logo" className="2xl:w-52 xl:w-48 lg:w-40 md:w-44 sm:w-36 w-28" /></Link>
+                    <Link to="/"><img src={logo} alt="company logo" className="2xl:w-44 xl:w-48 lg:w-40 md:w-44 sm:w-36 w-28" /></Link>
                 </FadeInUp>
                 <div className="lg:hidden">
                     <Hamburger toggled={isOpen} toggle={setOpen} size={28} color="#086165" />

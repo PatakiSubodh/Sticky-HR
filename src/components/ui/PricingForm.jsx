@@ -133,7 +133,6 @@ export default function PricingForm() {
         setErrors(newErrors);
 
         if (Object.keys(newErrors).length === 0) {
-            console.log("Form Submitted:", formData);
             // Add your form submission logic here (e.g., API call)
             
             // Reset form after successful submission

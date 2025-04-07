@@ -11,9 +11,7 @@ export default function ServicesImplementation() {
                 <div className=" bg-white h-24 "></div>
                 <div className="sm:grid sm:grid-cols-2 flex flex-col p-8 sm:pl-0 bg-[#086165] xl:h-[400px] sm:h-[400px] h-[400px] relative pb-10">
                     <div className="relative z-20">
-                        <FadeInUp delay={0.1}>
                         <img src={girl} alt="girl" className="absolute 2xl:-bottom-10 xl:-bottom-10 lg:-bottom-10 sm:-bottom-10 bottom-40 "/>
-                        </FadeInUp>
                     </div>
                     <div className="flex flex-col space-y-6 sm:mt-16 mt-12 z-20">
                         <FadeInUp delay={0.1}>

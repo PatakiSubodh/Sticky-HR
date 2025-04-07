@@ -65,7 +65,6 @@ export default function IntroContent() {
         setErrors(newErrors);
 
         if (Object.keys(newErrors).length === 0) {
-            console.log('Form submitted:', formData);
             // Add your form submission logic here (e.g., API call)
             
             // Reset form after successful submission

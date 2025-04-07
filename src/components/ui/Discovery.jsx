@@ -25,7 +25,7 @@ const Layout = () => {
                         </p>
                     </FadeInUp>
                     <FadeInUp delay={0.3}>
-                        <Link to="/contact-us">
+                        <Link to="/contact-us" className="inline-block">
                             <button className="mt-6 text-base sm:text-lg lg:text-xl bg-yellow-400 w-60 sm:w-64 lg:w-72 h-12 sm:h-14 lg:h-16 text-black font-semibold px-4 sm:px-6 py-2 sm:py-3 rounded-lg shadow-lg flex items-center justify-between hover:bg-yellow-500">
                                 Talk to an Expert 
                                 <ArrowUpRight className="w-5 h-5 sm:w-6 sm:h-6 text-black" />
